@@ -1,4 +1,4 @@
-package com.aaraguas.ilernaprestamos
+package com.aaraguas.ilernaprestamos.Adapters
 
 
 import android.app.AlertDialog
@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.aaraguas.ilernaprestamos.*
 import com.aaraguas.ilernaprestamos.databinding.ItemDiscosBinding
 
 class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPrestamos.ViewHolder>() {

@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aaraguas.ilernaprestamos.Adapters.RecyclerViewAdapterPrestamos
 import com.aaraguas.ilernaprestamos.databinding.ActivityMainBinding
 
 import kotlinx.android.synthetic.main.layout_busca.*
