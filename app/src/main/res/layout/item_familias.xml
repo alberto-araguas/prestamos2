@@ -15,12 +15,14 @@
             android:layout_height="wrap_content"
             android:backgroundTint="?android:attr/textColorHighlightInverse"
             android:text="id_Familia"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/viewNombreFamilia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#AEB6EC"
             android:text="NombreFamilia"
             android:textSize="24sp" />
     </LinearLayout>

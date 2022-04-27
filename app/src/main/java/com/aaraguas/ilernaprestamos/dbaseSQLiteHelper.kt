@@ -42,6 +42,9 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
                 "($CAMPO_IDF INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_FNOMBRE TEXT )"
 
         db!!.execSQL(ordenCreacionFamilia)
+
+
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -90,6 +93,16 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val db = this.writableDatabase
         db.insert(TABLA_DISCOS, null, datos)
         db.close()
+    }
+
+    fun iniciardatosfamilia(){
+        val datos = ContentValues()
+        datos.put(CAMPO_FNOMBRE, "PORTATILES")
+
+        val db = this.writableDatabase
+        db.insert(TABLA_FAMILIA, null, datos)
+        db.close()
+
     }
 
     fun editarDisco(id: Int, portada: String, titulo: String, artista: String, formato: String,
