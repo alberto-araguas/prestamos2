@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
-    context, "prestamos.db", null, 1) {
+    context, "prestamos.db", null, 2) {
 
     private lateinit var db : SQLiteDatabase
 
@@ -27,6 +27,15 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val TABLA_FAMILIA = "familia"
         val CAMPO_IDF = "_idF"
         val CAMPO_FNOMBRE = "familia_nombre"
+        //tabla lugares
+        val TABLA_LUGARES = "lugares"
+        val CAMPO_IDL = "_idL"
+        val CAMPO_LNOMBRE = "lugares_nombre"
+        val CAMPO_LDIRECCION = "lugares_direccion"
+        val CAMPO_LTELEFONO = "lugares_telefono"
+        val CAMPO_LCORREO = "lugares_correo"
+
+
 
     }
 
@@ -43,6 +52,11 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
 
         db!!.execSQL(ordenCreacionFamilia)
 
+        val ordenCreacionlugares = "CREATE TABLE $TABLA_LUGARES " +
+                "($CAMPO_IDL INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_LNOMBRE TEXT, " +
+                "$CAMPO_LDIRECCION TEXT, $CAMPO_LTELEFONO LONG , $CAMPO_LCORREO TEXT)"
+        db!!.execSQL(ordenCreacionlugares)
+
 
 
     }
@@ -52,6 +66,8 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db!!.execSQL(ordenBorrado)
         val ordenBorradoFamilia = "DROP TABLE IF EXISTS familia"
         db!!.execSQL(ordenBorradoFamilia)
+        val ordenBorradoLugares = "DROP TABLE IF EXISTS lugares"
+        db!!.execSQL(ordenBorradoLugares)
         onCreate(db)
     }
 
@@ -139,6 +155,19 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
 
         val db = this.writableDatabase
         db.insert(TABLA_FAMILIA, null, datos)
+        db.close()
+    }
+
+    //CRUD TABLA LUGARES
+    fun agregarLugar(lugar_nombre: String,lugar_direccion: String,lugar_telefono: Long,lugar_correo: String) {
+        val datos = ContentValues()
+        datos.put(CAMPO_LNOMBRE, lugar_nombre)
+        datos.put(CAMPO_LDIRECCION, lugar_direccion)
+        datos.put(CAMPO_LTELEFONO, lugar_telefono)
+        datos.put(CAMPO_LCORREO, lugar_correo)
+
+        val db = this.writableDatabase
+        db.insert(TABLA_LUGARES, null, datos)
         db.close()
     }
 

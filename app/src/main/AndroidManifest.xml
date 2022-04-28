@@ -19,6 +19,9 @@
         <activity
             android:name=".FamiliaActivity"
             android:exported="false" />
+        <activity
+            android:name=".LugaresActivity"
+            android:exported="false" />
         <activity android:name="com.aaraguas.ilernaprestamos.SplashscreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

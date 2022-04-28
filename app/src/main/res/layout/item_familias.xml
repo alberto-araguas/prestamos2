@@ -22,7 +22,7 @@
             android:id="@+id/viewNombreFamilia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#AEB6EC"
+            android:background="#68BED8"
             android:text="NombreFamilia"
             android:textSize="24sp" />
     </LinearLayout>
