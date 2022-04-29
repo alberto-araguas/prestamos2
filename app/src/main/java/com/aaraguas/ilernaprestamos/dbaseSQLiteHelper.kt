@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
-    context, "prestamos.db", null, 3) {
+    context, "prestamos.db", null, 9) {
 
     private lateinit var db : SQLiteDatabase
 
@@ -42,6 +42,14 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val CAMPO_PTELEFONO = "proveedores_telefono"
         val CAMPO_PCORREO = "proveedores_correo"
         val CAMPO_PCONTACTO = "proveedores_contacto"
+        //tabla proveedores
+        val TABLA_USUARIOS = "usuarios"
+        val CAMPO_IDUS = "_idUsuario"
+        val CAMPO_USNOMBRE = "usuarios_nombre"
+        val CAMPO_USDIRECCION = "usuarios_direccion"
+        val CAMPO_USTELEFONO = "usuarios_telefono"
+        val CAMPO_USCORREO = "usuarios_correo"
+        val CAMPO_USDEPARTAMENTO = "usuarios_departamento"
 
 
     }
@@ -69,6 +77,11 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
                 "$CAMPO_PDIRECCION TEXT, $CAMPO_PTELEFONO LONG , $CAMPO_PCORREO TEXT, $CAMPO_PCONTACTO TEXT)"
         db!!.execSQL(ordenCreacionproveedores)
 
+        val ordenCreacionusuarios = "CREATE TABLE $TABLA_USUARIOS " +
+                "($CAMPO_IDUS INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_USNOMBRE TEXT, " +
+                "$CAMPO_USDIRECCION TEXT, $CAMPO_USTELEFONO LONG , $CAMPO_USCORREO TEXT, $CAMPO_USDEPARTAMENTO TEXT)"
+        db!!.execSQL(ordenCreacionusuarios)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -80,6 +93,8 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db!!.execSQL(ordenBorradoLugares)
         val ordenBorradoProveedores = "DROP TABLE IF EXISTS proveedores"
         db!!.execSQL(ordenBorradoProveedores)
+        val ordenBorradoUsuario = "DROP TABLE IF EXISTS usuarios"
+        db!!.execSQL(ordenBorradoUsuario)
         onCreate(db)
     }
 
@@ -195,7 +210,19 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.insert(TABLA_PROVEEDORES, null, datos)
         db.close()
     }
+    //CRUD TABLA USUARIOS
+    fun agregarUsuario(us_nombre: String,us_direccion: String,us_telefono: Long,us_correo: String,us_departamento: String) {
+        val datos = ContentValues()
+        datos.put(CAMPO_USNOMBRE, us_nombre)
+        datos.put(CAMPO_USDIRECCION, us_direccion)
+        datos.put(CAMPO_USTELEFONO, us_telefono)
+        datos.put(CAMPO_USCORREO, us_correo)
+        datos.put(CAMPO_USDEPARTAMENTO, us_departamento)
 
+        val db = this.writableDatabase
+        db.insert(TABLA_USUARIOS, null, datos)
+        db.close()
+    }
 
     fun cerrarDB() {
         db.close()

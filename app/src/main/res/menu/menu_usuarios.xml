@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    tools:context = ".UsuariosActivity">
+
+    <item
+        android:id="@+id/opUsuarioInsertar"
+        android:title="Insertar" />
+    <item
+        android:id="@+id/opUsuarioBorrar"
+        android:title="Borrar" />
+    <item
+        android:id="@+id/opUsuarioVolver"
+        android:title="Volver" />
+
+
+</menu>

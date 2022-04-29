@@ -25,23 +25,22 @@
         <activity
             android:name=".LugaresActivity"
             android:exported="false" />
+        <activity
+            android:name=".UsuariosActivity"
+            android:exported="false" />
         <activity android:name="com.aaraguas.ilernaprestamos.SplashscreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity
+     <activity
             android:name="com.aaraguas.ilernaprestamos.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name="com.aaraguas.ilernaprestamos.AgregarActivity" />
         <activity android:name="com.aaraguas.ilernaprestamos.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
