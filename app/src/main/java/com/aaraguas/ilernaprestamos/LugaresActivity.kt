@@ -33,7 +33,7 @@ class LugaresActivity: AppCompatActivity() {
 
         lugaresDBHelper=dbaseSQLiteHelper(this)
 
-        lugaresDBHelper.agregarLugar("Auditorio","Calle calvario 12",974413436,"auditorio@monzon.es")
+        //lugaresDBHelper.agregarLugar("Salon Multiusos","Plaza Mayor 4",974321123,"multiusos@miempresa.es")
 
 
         db=lugaresDBHelper.readableDatabase

@@ -34,7 +34,7 @@ class FamiliaActivity: AppCompatActivity() {
 
         familiaDBHelper=dbaseSQLiteHelper(this)
 
-        familiaDBHelper.agregarFamilia("Portatiles")
+        //familiaDBHelper.agregarFamilia("Telefonos")
 
 
         db=familiaDBHelper.readableDatabase

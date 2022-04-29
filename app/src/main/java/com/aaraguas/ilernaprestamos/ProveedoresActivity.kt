@@ -28,7 +28,7 @@ class ProveedoresActivity : AppCompatActivity() {
 
         proveedoresDBHelper=dbaseSQLiteHelper(this)
 
-        proveedoresDBHelper.agregarProveedor("PC COMPUTADORES SL","Avenida Del Pilar 11",974400400,"contacto@pccomputadoes.es","Adelardo Sanchez")
+        //proveedoresDBHelper.agregarProveedor("TELEFONOS DEL NORTE SL","Calle Eroles 41",974000000,"gerencia@telefonos.es","Javier Samperiz")
 
 
         db=proveedoresDBHelper.readableDatabase

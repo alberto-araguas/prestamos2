@@ -27,7 +27,7 @@ class UsuariosActivity : AppCompatActivity() {
 
         usuariosDBHelper=dbaseSQLiteHelper(this)
 
-        usuariosDBHelper.agregarUsuario("ALBERTO ARAGUAS GARCES","Calle del Palomar 7",616616616,"alberto@alberto.com","INFORMATICA")
+        //usuariosDBHelper.agregarUsuario("JAVIER TORRES MONTES","Avenida Pueyo 27",444444444,"javitorres@jotamail.com","CULTURA")
 
 
         db=usuariosDBHelper.readableDatabase
