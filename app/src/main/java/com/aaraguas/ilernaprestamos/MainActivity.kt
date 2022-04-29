@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         dbaseHelper = dbaseSQLiteHelper(this)
-        binding.rvDiscos.setHasFixedSize(true)
-        binding.rvDiscos.layoutManager = LinearLayoutManager(this)
+        binding.rvPrestamos.setHasFixedSize(true)
+        binding.rvPrestamos.layoutManager = LinearLayoutManager(this)
 
         binding.fbtnAgregar.setOnClickListener {
             val intentAgregar = Intent(this, AgregarActivity::class.java)
@@ -36,20 +36,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        cargaDiscos()
+        cargaPrestamos()
     }
 
-    fun cargaDiscos() {
+    fun cargaPrestamos() {
         val cursor = dbaseHelper.obtenerTodosDiscos(dbaseSQLiteHelper.TABLA_DISCOS, dbaseSQLiteHelper.CAMPO_TITULO)
         adaptador.RecyclerViewAdapterDiscos(this, cursor)
-        binding.rvDiscos.adapter = adaptador
+        binding.rvPrestamos.adapter = adaptador
     }
 
     fun cargaBusqueda(campo: String, campoValor: String) {
         val cursor = dbaseHelper.obtenerCursor(dbaseSQLiteHelper.TABLA_DISCOS, campo,
             campoValor, campo)
         adaptador.RecyclerViewAdapterDiscos(this, cursor)
-        binding.rvDiscos.adapter = adaptador
+        binding.rvPrestamos.adapter = adaptador
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.opMostrarTodos -> {
-                cargaDiscos()
+                cargaPrestamos()
                 true
             }
             R.id.opMostrar -> {

@@ -116,7 +116,7 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
                         dialogo, which ->
                             val dbHelper = dbaseSQLiteHelper(context)
                             dbHelper.borrarDisco(id)
-                            (context as MainActivity).cargaDiscos()
+                            (context as MainActivity).cargaPrestamos()
                     }
                     builder.setNegativeButton(android.R.string.cancel, null)
                     builder.show()
