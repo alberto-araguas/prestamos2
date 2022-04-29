@@ -90,6 +90,13 @@ class MainActivity : AppCompatActivity() {
             R.id.opMostrar -> {
                 true
             }
+            R.id.opProveedor -> {
+                val intent = Intent(this, ProveedoresActivity::class.java).apply {
+
+                }
+                startActivity(intent)
+                true
+            }
             R.id.opLocales -> {
                 val intent = Intent(this, LugaresActivity::class.java).apply {
 

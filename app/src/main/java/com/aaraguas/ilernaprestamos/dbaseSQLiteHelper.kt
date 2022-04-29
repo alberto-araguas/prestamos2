@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
-    context, "prestamos.db", null, 2) {
+    context, "prestamos.db", null, 3) {
 
     private lateinit var db : SQLiteDatabase
 
@@ -34,7 +34,14 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val CAMPO_LDIRECCION = "lugares_direccion"
         val CAMPO_LTELEFONO = "lugares_telefono"
         val CAMPO_LCORREO = "lugares_correo"
-
+        //tabla proveedores
+        val TABLA_PROVEEDORES = "proveedores"
+        val CAMPO_IDP = "_idP"
+        val CAMPO_PNOMBRE = "proveedores_nombre"
+        val CAMPO_PDIRECCION = "proveedores_direccion"
+        val CAMPO_PTELEFONO = "proveedores_telefono"
+        val CAMPO_PCORREO = "proveedores_correo"
+        val CAMPO_PCONTACTO = "proveedores_contacto"
 
 
     }
@@ -57,7 +64,10 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
                 "$CAMPO_LDIRECCION TEXT, $CAMPO_LTELEFONO LONG , $CAMPO_LCORREO TEXT)"
         db!!.execSQL(ordenCreacionlugares)
 
-
+        val ordenCreacionproveedores = "CREATE TABLE $TABLA_PROVEEDORES " +
+                "($CAMPO_IDP INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_PNOMBRE TEXT, " +
+                "$CAMPO_PDIRECCION TEXT, $CAMPO_PTELEFONO LONG , $CAMPO_PCORREO TEXT, $CAMPO_PCONTACTO TEXT)"
+        db!!.execSQL(ordenCreacionproveedores)
 
     }
 
@@ -68,6 +78,8 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db!!.execSQL(ordenBorradoFamilia)
         val ordenBorradoLugares = "DROP TABLE IF EXISTS lugares"
         db!!.execSQL(ordenBorradoLugares)
+        val ordenBorradoProveedores = "DROP TABLE IF EXISTS proveedores"
+        db!!.execSQL(ordenBorradoProveedores)
         onCreate(db)
     }
 
@@ -168,6 +180,19 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
 
         val db = this.writableDatabase
         db.insert(TABLA_LUGARES, null, datos)
+        db.close()
+    }
+    //CRUD TABLA PROVEEDORES
+    fun agregarProveedor(prov_nombre: String,prov_direccion: String,prov_telefono: Long,prov_correo: String,prov_contacto: String) {
+        val datos = ContentValues()
+        datos.put(CAMPO_PNOMBRE, prov_nombre)
+        datos.put(CAMPO_PDIRECCION, prov_direccion)
+        datos.put(CAMPO_PTELEFONO, prov_telefono)
+        datos.put(CAMPO_PCORREO, prov_correo)
+        datos.put(CAMPO_PCONTACTO, prov_contacto)
+
+        val db = this.writableDatabase
+        db.insert(TABLA_PROVEEDORES, null, datos)
         db.close()
     }
 

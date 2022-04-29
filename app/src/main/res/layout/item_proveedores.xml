@@ -10,46 +10,53 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/viewLugarId"
+            android:id="@+id/viewProveedorId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FB9C10"
+            android:background="#8FA3EA"
             android:backgroundTint="?android:attr/textColorHighlightInverse"
-            android:text="id_Lugar"
+            android:text="id_Prov"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/viewNombreLugar"
+            android:id="@+id/viewNombreProveedor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#EEEFE2"
-            android:text="NombreLugar"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/viewDireccionLugar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#EEEFE2"
-            android:text="DireccionLugar"
+            android:background="#C5D7DA"
+            android:text="Nombre"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/viewTelefonoLugar"
+            android:id="@+id/viewDireccionProveedor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#EEEFE2"
-            android:text="TelefonoLugar"
+            android:background="#C5D7DA"
+            android:text="Direccion"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/viewCorreoLugar"
+            android:id="@+id/viewTelefonoProveedor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#EEEFE2"
-            android:text="CorreoLugar"
+            android:background="#C5D7DA"
+            android:text="Telefono"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/viewCorreoProveedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#C5D7DA"
+            android:text="Correo"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/viewContactoProveedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#C5D7DA"
+            android:text="Contacto"
             android:textSize="24sp" />
     </LinearLayout>
 </LinearLayout>
