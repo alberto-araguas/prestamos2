@@ -126,6 +126,16 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val cursor = db.rawQuery("SELECT * FROM $tabla ORDER BY $campoOrden", null)
         return cursor
     }
+    fun obtenerSoloPrestados(): Cursor {
+        db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLA_PRESTAMOS WHERE $CAMPO_ESTADOPRESTAMO = 1 ORDER BY $CAMPO_ID", null)
+        return cursor
+    }
+    fun obtenerNoPrestados(): Cursor {
+        db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLA_PRESTAMOS WHERE $CAMPO_ESTADOPRESTAMO = 0 ORDER BY $CAMPO_ID", null)
+        return cursor
+    }
 
     fun obtenerPorId(tabla: String, id: Int) : Cursor {
         db = this.readableDatabase

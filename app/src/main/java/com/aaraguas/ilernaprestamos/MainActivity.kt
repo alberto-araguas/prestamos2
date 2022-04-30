@@ -44,6 +44,16 @@ class MainActivity : AppCompatActivity() {
         adaptador.RecyclerViewAdapterPrestamos(this, cursor)
         binding.rvPrestamos.adapter = adaptador
     }
+    fun cargaSoloPrestados() {
+        val cursor = dbaseHelper.obtenerSoloPrestados()
+        adaptador.RecyclerViewAdapterPrestamos(this, cursor)
+        binding.rvPrestamos.adapter = adaptador
+    }
+    fun cargaNoPrestados() {
+        val cursor = dbaseHelper.obtenerNoPrestados()
+        adaptador.RecyclerViewAdapterPrestamos(this, cursor)
+        binding.rvPrestamos.adapter = adaptador
+    }
 
     fun cargaBusqueda(campo: String, campoValor: String) {
         val cursor = dbaseHelper.obtenerCursor(dbaseSQLiteHelper.TABLA_PRESTAMOS, campo,
@@ -63,8 +73,8 @@ class MainActivity : AppCompatActivity() {
             R.id.opBuscar -> {
                 val adaptSpBusca = ArrayAdapter(this,
                     android.R.layout.simple_spinner_item, arrayOf(
-                        dbaseSQLiteHelper.CAMPO_CARACTERISTICAS.capitalize(),
-                        dbaseSQLiteHelper.CAMPO_FECHACOMPRA.capitalize()))
+                        dbaseSQLiteHelper.CAMPO_NOMBREEQUIPO.capitalize(),
+                        dbaseSQLiteHelper.CAMPO_CARACTERISTICAS.capitalize()))
                 adaptSpBusca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
                 val builder = AlertDialog.Builder(this)
@@ -83,6 +93,15 @@ class MainActivity : AppCompatActivity() {
                 builder.show()
                 true
             }
+            R.id.opPrestado -> {
+                cargaSoloPrestados()
+                true
+            }
+            R.id.opNoPrestado -> {
+                cargaNoPrestados()
+                true
+            }
+
             R.id.opMostrarTodos -> {
                 cargaPrestamos()
                 true

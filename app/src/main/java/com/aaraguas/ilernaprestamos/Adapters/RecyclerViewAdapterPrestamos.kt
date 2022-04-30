@@ -14,11 +14,17 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.aaraguas.ilernaprestamos.*
 import com.aaraguas.ilernaprestamos.databinding.ItemPrestamoBinding
+import java.util.ArrayList
 
 class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPrestamos.ViewHolder>() {
 
     lateinit var context: Context
     lateinit var cursor: Cursor
+    private lateinit var dbaseHelper: dbaseSQLiteHelper
+    var usuarioArray = ArrayList<String>()
+    var lugarArray = ArrayList<String>()
+    var estadoArray = arrayOf("NO PRESTADO", "PRESTADO")
+
 
     fun RecyclerViewAdapterPrestamos(context: Context, cursor: Cursor) {
         this.context = context
@@ -26,20 +32,24 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         val inflater = LayoutInflater.from(parent.context)
         return ViewHolder(inflater.inflate(R.layout.item_prestamo, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        dbaseHelper  = dbaseSQLiteHelper(context)
         cursor.moveToPosition(position)
+        usuarioArray=dbaseHelper.cargarNombresUsuarios()
+        lugarArray=dbaseHelper.cargarNombresLugares()
 
         holder.id = cursor.getInt(0)
         holder.tvEquipo.text = cursor.getString(1)
         holder.tvCaracteristicas.text = cursor.getString(2)
-        holder.tvEstado.text = cursor.getString(6)
-        holder.tvUsuario.text = cursor.getString(9)
+        holder.tvEstado.text = estadoArray.get(cursor.getInt(6))
+        holder.tvUsuario.text = usuarioArray.get(cursor.getInt(9))
         holder.tvFecha.text = cursor.getString(7)
-        holder.tvLugar.text = cursor.getString(8)
+        holder.tvLugar.text = lugarArray.get(cursor.getInt(8))
 
     }
 

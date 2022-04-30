@@ -123,15 +123,7 @@ class AgregarActivity : AppCompatActivity() {
                 fechaEscogida.get(Calendar.DAY_OF_MONTH)).show()
         }
 
-       // binding.splugar.setOnClickListener {
-       //     val intentMapa = Intent(this, MapsActivity::class.java)
-       //         .apply {
-       //             putExtra("editar", true)
-       //             putExtra("estudio", binding.tvAgregarEstudio.text.toString())
 
-       //         }
-        //    startActivityForResult(intentMapa, REQUEST_MAP)
-        //}
 
         binding.btnAceptar.setOnClickListener {
             if(binding.etEquipo.text.isNotBlank() &&
