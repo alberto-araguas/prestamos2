@@ -13,21 +13,21 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.aaraguas.ilernaprestamos.*
-import com.aaraguas.ilernaprestamos.databinding.ItemDiscosBinding
+import com.aaraguas.ilernaprestamos.databinding.ItemPrestamoBinding
 
 class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPrestamos.ViewHolder>() {
 
     lateinit var context: Context
     lateinit var cursor: Cursor
 
-    fun RecyclerViewAdapterDiscos(context: Context, cursor: Cursor) {
+    fun RecyclerViewAdapterPrestamos(context: Context, cursor: Cursor) {
         this.context = context
         this.cursor = cursor
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(inflater.inflate(R.layout.item_discos, parent, false))
+        return ViewHolder(inflater.inflate(R.layout.item_prestamo, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -35,12 +35,12 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
 
         holder.id = cursor.getInt(0)
         holder.ivPortada.setImageURI(Uri.parse(cursor.getString(1)))
-        holder.tvTitulo.text = cursor.getString(2)
-        holder.tvArtista.text = cursor.getString(3)
-        holder.tvFormato.text = cursor.getString(4)
-        holder.tvEstilo.text = cursor.getString(5)
+        holder.tvEquipo.text = cursor.getString(2)
+        holder.tvCaracteristicas.text = cursor.getString(3)
+        holder.tvEstado.text = cursor.getString(4)
+        holder.tvUsuario.text = cursor.getString(5)
         holder.tvFecha.text = cursor.getString(6)
-        holder.tvEstudio.text = cursor.getString(7)
+        holder.tvLugar.text = cursor.getString(7)
         holder.latitud = cursor.getDouble(8)
         holder.longitud = cursor.getDouble(9)
     }
@@ -55,28 +55,28 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
     inner class ViewHolder: RecyclerView.ViewHolder, PopupMenu.OnMenuItemClickListener {
         var id : Int = 0
         val ivPortada : ImageView
-        val tvTitulo : TextView
-        val tvArtista : TextView
-        val tvFormato : TextView
-        val tvEstilo : TextView
+        val tvEquipo : TextView
+        val tvCaracteristicas : TextView
+        val tvEstado : TextView
+        val tvUsuario : TextView
         val tvFecha : TextView
-        val tvEstudio : TextView
+        val tvLugar : TextView
         var latitud: Double = 0.0
         var longitud: Double = 0.0
 
         constructor(view: View) : super(view) {
-            val bindingItemsDisco = ItemDiscosBinding.bind(view)
+            val bindingItemsDisco = ItemPrestamoBinding.bind(view)
             ivPortada = bindingItemsDisco.ivPortada
-            tvTitulo = bindingItemsDisco.tvTitulo
-            tvArtista = bindingItemsDisco.tvArtista
-            tvFormato = bindingItemsDisco.tvFormato
-            tvEstilo = bindingItemsDisco.tvEstilo
+            tvEquipo = bindingItemsDisco.tvEquipoPrestamo
+            tvCaracteristicas = bindingItemsDisco.tvCaract
+            tvEstado = bindingItemsDisco.tvEstado
+            tvUsuario = bindingItemsDisco.tvUser
             tvFecha = bindingItemsDisco.tvFecha
-            tvEstudio = bindingItemsDisco.tvEstudio
+            tvLugar = bindingItemsDisco.tvLugar
 
             view.setOnClickListener{
                 Toast.makeText(context,
-                    "Mantenga pulsado para opciones\n ${tvTitulo.text}",
+                    "Mantenga pulsado para opciones\n ${tvEquipo.text}",
                     Toast.LENGTH_SHORT).show()
             }
 
@@ -88,10 +88,10 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
                 true
             }
 
-            tvEstudio.setOnClickListener {
+            tvLugar.setOnClickListener {
                 val intentMapa = Intent(context, MapsActivity::class.java)
                     .apply {
-                        putExtra("estudio", tvEstudio.text.toString())
+                        putExtra("estudio", tvLugar.text.toString())
                         putExtra("latitud", latitud)
                         putExtra("longitud", longitud)
                     }
@@ -111,7 +111,7 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
                 R.id.opBorrar -> {
                     val builder = AlertDialog.Builder(context)
                     builder.setTitle("Borrar")
-                    builder.setMessage("¿Estás seguro de borrar '${tvTitulo.text}'?")
+                    builder.setMessage("¿Estás seguro de borrar '${tvEquipo.text}'?")
                     builder.setPositiveButton(android.R.string.ok) {
                         dialogo, which ->
                             val dbHelper = dbaseSQLiteHelper(context)

@@ -27,7 +27,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvTitulo"
+            android:id="@+id/tv_equipo_prestamo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -38,24 +38,24 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvArtista"
+            android:id="@+id/tv_caract"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Artista"
             app:layout_constraintStart_toEndOf="@+id/ivPortada"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_equipo_prestamo" />
 
         <TextView
-            android:id="@+id/tvFormato"
+            android:id="@+id/tv_estado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Formato"
             app:layout_constraintStart_toEndOf="@+id/ivPortada"
-            app:layout_constraintTop_toBottomOf="@+id/tvArtista" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_caract" />
 
         <TextView
             android:id="@+id/tvFecha"
@@ -65,20 +65,20 @@
             android:layout_marginEnd="8dp"
             android:text="Fecha"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvArtista" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_caract" />
 
         <TextView
-            android:id="@+id/tvEstilo"
+            android:id="@+id/tv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Estilo"
             app:layout_constraintStart_toEndOf="@+id/ivPortada"
-            app:layout_constraintTop_toBottomOf="@+id/tvFormato" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_estado" />
 
         <TextView
-            android:id="@+id/tvEstudio"
+            android:id="@+id/tv_lugar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

@@ -41,14 +41,14 @@ class MainActivity : AppCompatActivity() {
 
     fun cargaPrestamos() {
         val cursor = dbaseHelper.obtenerTodosDiscos(dbaseSQLiteHelper.TABLA_DISCOS, dbaseSQLiteHelper.CAMPO_TITULO)
-        adaptador.RecyclerViewAdapterDiscos(this, cursor)
+        adaptador.RecyclerViewAdapterPrestamos(this, cursor)
         binding.rvPrestamos.adapter = adaptador
     }
 
     fun cargaBusqueda(campo: String, campoValor: String) {
         val cursor = dbaseHelper.obtenerCursor(dbaseSQLiteHelper.TABLA_DISCOS, campo,
             campoValor, campo)
-        adaptador.RecyclerViewAdapterDiscos(this, cursor)
+        adaptador.RecyclerViewAdapterPrestamos(this, cursor)
         binding.rvPrestamos.adapter = adaptador
     }
 
