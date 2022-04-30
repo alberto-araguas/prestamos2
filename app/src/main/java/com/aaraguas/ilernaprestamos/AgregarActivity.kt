@@ -45,19 +45,18 @@ class AgregarActivity : AppCompatActivity() {
         val adaptadorEstilo = ArrayAdapter(this,
                 R.layout.simple_spinner_item, estilos)
         adaptadorEstilo.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        binding.spEstilo.adapter = adaptadorEstilo
+        binding.spUser.adapter = adaptadorEstilo
 
         val id = intent.getIntExtra("id", 0)
 
         if (id != 0) {
             val cursor = dbaseHelper.obtenerPorId(dbaseSQLiteHelper.TABLA_DISCOS, id)
             uriImagen = cursor.getString(1)
-            binding.ivAgregarPortada.setImageURI(Uri.parse(cursor.getString(1)))
             binding.etTitulo.setText(cursor.getString(2))
             binding.etArtista.setText(cursor.getString(3))
             binding.spFormato.setSelection(
                 adaptadorFormato.getPosition(cursor.getString(4)))
-            binding.spEstilo.setSelection(
+            binding.spUser.setSelection(
                 adaptadorEstilo.getPosition(cursor.getString(5)))
             binding.tvAgregarFecha.text = cursor.getString(6)
             binding.tvAgregarEstudio.text = cursor.getString(7)
@@ -66,12 +65,10 @@ class AgregarActivity : AppCompatActivity() {
             binding.btnAceptar.setText("Modificar")
             dbaseHelper.cerrarDB()
         } else {
-            binding.ivAgregarPortada.setImageURI(Uri.parse(uriImagen))
+
         }
 
-        binding.ivAgregarPortada.setOnClickListener {
-            mostrarGaleria()
-        }
+
 
         val formatter = SimpleDateFormat("dd/MM/yyyy")
         var fechaEscogida = Calendar.getInstance()
@@ -84,6 +81,13 @@ class AgregarActivity : AppCompatActivity() {
             binding.tvAgregarFecha.text = formatter.format(fechaEscogida.time)
         }
         binding.tvAgregarFecha.setOnClickListener {
+            DatePickerDialog(this,
+                listenerFecha,
+                fechaEscogida.get(Calendar.YEAR),
+                fechaEscogida.get(Calendar.MONTH),
+                fechaEscogida.get(Calendar.DAY_OF_MONTH)).show()
+        }
+        binding.tvAgregarFechaCompra.setOnClickListener {
             DatePickerDialog(this,
                 listenerFecha,
                 fechaEscogida.get(Calendar.YEAR),
@@ -113,7 +117,7 @@ class AgregarActivity : AppCompatActivity() {
                         binding.etTitulo.text.toString(),
                         binding.etArtista.text.toString(),
                         binding.spFormato.selectedItem.toString(),
-                        binding.spEstilo.selectedItem.toString(),
+                        binding.spUser.selectedItem.toString(),
                         binding.tvAgregarFecha.text.toString(),
                         binding.tvAgregarEstudio.text.toString(),
                         latitud,
@@ -124,7 +128,7 @@ class AgregarActivity : AppCompatActivity() {
                         binding.etTitulo.text.toString(),
                         binding.etArtista.text.toString(),
                         binding.spFormato.selectedItem.toString(),
-                        binding.spEstilo.selectedItem.toString(),
+                        binding.spUser.selectedItem.toString(),
                         binding.tvAgregarFecha.text.toString(),
                         binding.tvAgregarEstudio.text.toString(),
                         latitud,
@@ -164,7 +168,7 @@ class AgregarActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == REQUEST_GALLERY) {
             uriImagen = data?.data.toString()
-            binding.ivAgregarPortada.setImageURI(data?.data)
+            //binding.ivAgregarPortada.setImageURI(data?.data)
         }
 
         if (resultCode == RESULT_OK && requestCode == REQUEST_MAP) {
