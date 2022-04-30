@@ -4,4 +4,10 @@
     <string name="title_activity_splashcreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="equipo">Equipo</string>
+    <string name="caracteristicas">Caracteristicas</string>
+    <string name="estado">Estado</string>
+    <string name="fecha_prestamo">Fecha prestamo</string>
+    <string name="usuario">Usuario</string>
+    <string name="lugar">Lugar</string>
 </resources>

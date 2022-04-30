@@ -34,7 +34,6 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
         cursor.moveToPosition(position)
 
         holder.id = cursor.getInt(0)
-        holder.ivPortada.setImageURI(Uri.parse(cursor.getString(1)))
         holder.tvEquipo.text = cursor.getString(2)
         holder.tvCaracteristicas.text = cursor.getString(3)
         holder.tvEstado.text = cursor.getString(4)
@@ -54,7 +53,7 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
 
     inner class ViewHolder: RecyclerView.ViewHolder, PopupMenu.OnMenuItemClickListener {
         var id : Int = 0
-        val ivPortada : ImageView
+
         val tvEquipo : TextView
         val tvCaracteristicas : TextView
         val tvEstado : TextView
@@ -66,7 +65,7 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
 
         constructor(view: View) : super(view) {
             val bindingItemsDisco = ItemPrestamoBinding.bind(view)
-            ivPortada = bindingItemsDisco.ivPortada
+
             tvEquipo = bindingItemsDisco.tvEquipoPrestamo
             tvCaracteristicas = bindingItemsDisco.tvCaract
             tvEstado = bindingItemsDisco.tvEstado
