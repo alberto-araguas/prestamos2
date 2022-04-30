@@ -25,26 +25,33 @@ class AgregarActivity : AppCompatActivity() {
     private var uriImagen = "android.resource://com.aaraguas.ilernaprestamos/drawable/vinyl"
 
 
-    val formatos = arrayOf("CD", "LP", "SP", "Digital", "Cassette")
-    val estilos = arrayOf("Rock", "Metal", "Soundtrack", "Pop", "Jazz", "Clásica")
-    val estados = arrayOf("NO PRESTADO", "PRESTADO")
-    val lugaresarray = arrayOf("Rock", "Metal", "Soundtrack", "Pop", "Jazz", "Clásica")
-    val usuariosArray = arrayOf("Rock", "Metal", "Soundtrack", "Pop", "Jazz", "Clásica")
+    var proveedorArray = ArrayList<String>()
+    var familiaArray = ArrayList<String>()
+    var estados = arrayOf("NO PRESTADO", "PRESTADO")
+    var lugaresArray = ArrayList<String>()
+    var usuariosArray = ArrayList<String>()
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAgregarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dbaseHelper = dbaseSQLiteHelper(this)
+        dbaseHelper  = dbaseSQLiteHelper(this)
+        usuariosArray = dbaseHelper.cargarNombresUsuarios()
+        lugaresArray = dbaseHelper.cargarNombresLugares()
+        proveedorArray = dbaseHelper.cargarNombresProveedores()
+        familiaArray = dbaseHelper.cargarNombresFamilias()
 
         val adaptadorSpinnerProveedor = ArrayAdapter(this,
-                R.layout.simple_spinner_item, formatos)
+                R.layout.simple_spinner_item, proveedorArray)
         adaptadorSpinnerProveedor.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        binding.spEstado.adapter = adaptadorSpinnerProveedor
+        binding.spUser2.adapter = adaptadorSpinnerProveedor
 
         val adaptadorSpinnerFamilia = ArrayAdapter(this,
-                R.layout.simple_spinner_item, estilos)
+                R.layout.simple_spinner_item, familiaArray)
         adaptadorSpinnerFamilia.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         binding.spFormato2.adapter = adaptadorSpinnerFamilia
 
@@ -54,7 +61,7 @@ class AgregarActivity : AppCompatActivity() {
         binding.spEstado.adapter = adaptadorSpinnerEstado
 
         val adaptadorSpLugares = ArrayAdapter(this,
-            R.layout.simple_spinner_item, lugaresarray)
+            R.layout.simple_spinner_item, lugaresArray)
         adaptadorSpLugares.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         binding.spLugar.adapter = adaptadorSpLugares
 

@@ -12,6 +12,9 @@
         android:layout_height="29dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#BAE7ED"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/spUser" />
 
@@ -30,17 +33,23 @@
         android:id="@+id/spFormato2"
         android:layout_width="284dp"
         android:layout_height="32dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        android:layout_marginEnd="16dp"
+        android:background="#BAE7ED"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/tvAgregarFechaCompra" />
 
     <Spinner
         android:id="@+id/spUser2"
-        android:layout_width="374dp"
+        android:layout_width="361dp"
         android:layout_height="33dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="#BAE7ED"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -113,6 +122,9 @@
         android:layout_height="32dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#BAE7ED"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/et_caracteristicas" />
 
@@ -130,10 +142,13 @@
 
     <Spinner
         android:id="@+id/spUser"
-        android:layout_width="374dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="363dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#BAE7ED"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 

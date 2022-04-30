@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
-    context, "prestamos.db", null, 11) {
+    context, "prestamos.db", null, 12) {
 
     private lateinit var db : SQLiteDatabase
 
@@ -42,7 +42,7 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val CAMPO_PTELEFONO = "proveedores_telefono"
         val CAMPO_PCORREO = "proveedores_correo"
         val CAMPO_PCONTACTO = "proveedores_contacto"
-        //tabla proveedores
+        //tabla usuarios
         val TABLA_USUARIOS = "usuarios"
         val CAMPO_IDUS = "_idUsuario"
         val CAMPO_USNOMBRE = "usuarios_nombre"
@@ -202,6 +202,44 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.insert(TABLA_LUGARES, null, datos)
         db.close()
     }
+    fun cargarNombresLugares():ArrayList<String> {
+        val miLista = ArrayList<String>()
+        db = this.readableDatabase
+        val cursor =
+            db.rawQuery("SELECT $CAMPO_LNOMBRE FROM $TABLA_LUGARES ORDER BY $CAMPO_IDL", null)
+        cursor.moveToFirst()
+        do{
+            miLista.add(cursor.getString(0))
+        }  while (cursor.moveToNext())
+        db.close()
+        return miLista
+    }
+
+
+
+    //CRUD TABLA FAMILIA
+    fun agregarFamilia(lugar_nombre: String) {
+        val datos = ContentValues()
+        datos.put(CAMPO_FNOMBRE, lugar_nombre)
+
+        val db = this.writableDatabase
+        db.insert(TABLA_FAMILIA, null, datos)
+        db.close()
+    }
+    fun cargarNombresFamilias():ArrayList<String> {
+        val miLista = ArrayList<String>()
+        db = this.readableDatabase
+        val cursor =
+            db.rawQuery("SELECT $CAMPO_FNOMBRE FROM $TABLA_FAMILIA ORDER BY $CAMPO_IDF", null)
+        cursor.moveToFirst()
+        do{
+            miLista.add(cursor.getString(0))
+        }  while (cursor.moveToNext())
+        db.close()
+        return miLista
+    }
+
+
     //CRUD TABLA PROVEEDORES
     fun agregarProveedor(prov_nombre: String,prov_direccion: String,prov_telefono: Long,prov_correo: String,prov_contacto: String) {
         val datos = ContentValues()
@@ -215,6 +253,24 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.insert(TABLA_PROVEEDORES, null, datos)
         db.close()
     }
+
+    fun cargarNombresProveedores():ArrayList<String>{
+        val miLista = ArrayList<String>()
+
+        db = this.readableDatabase
+        val cursoru = db.rawQuery("SELECT $CAMPO_PNOMBRE FROM $TABLA_PROVEEDORES ORDER BY $CAMPO_IDP" , null)
+
+       cursoru.moveToFirst()
+        do{
+            miLista.add(cursoru.getString(0))
+        }  while (cursoru.moveToNext())
+        db.close()
+        return miLista
+    }
+
+
+
+
     //CRUD TABLA USUARIOS
     fun agregarUsuario(us_nombre: String,us_direccion: String,us_telefono: Long,us_correo: String,us_departamento: String) {
         val datos = ContentValues()
@@ -227,6 +283,17 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val db = this.writableDatabase
         db.insert(TABLA_USUARIOS, null, datos)
         db.close()
+    }
+    fun cargarNombresUsuarios():ArrayList<String>{
+        var miLista = ArrayList<String>()
+        db = this.readableDatabase
+        val cursoru = db.rawQuery("SELECT $CAMPO_USNOMBRE FROM $TABLA_USUARIOS ORDER BY $CAMPO_IDUS" , null)
+        cursoru.moveToFirst()
+        do{
+            miLista.add(cursoru.getString(0))
+        }  while (cursoru.moveToNext())
+        db.close()
+        return miLista
     }
 
     fun cerrarDB() {
