@@ -14,7 +14,7 @@
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.263" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/drawable/ic_launcher_background.xml" value="0.263" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.263" />
-        <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/activity_agregar.xml" value="0.35052083333333334" />
+        <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/activity_agregar.xml" value="0.335243553008596" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/activity_familia.xml" value="0.25" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/activity_lugares.xml" value="0.22" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/activity_main.xml" value="0.17046605876393112" />
@@ -25,6 +25,7 @@
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/item_discos.xml" value="0.3234375" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/item_familias.xml" value="0.35052083333333334" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/item_lugares.xml" value="0.182370820668693" />
+        <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/item_prestamo.xml" value="0.33" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/item_prestamos.xml" value="0.2509057971014493" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/item_proveedores.xml" value="0.42407407407407405" />
         <entry key="..\:/proyectos/prestamosI/app/src/main/res/layout/item_usuarios.xml" value="0.1" />

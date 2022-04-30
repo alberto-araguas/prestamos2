@@ -34,14 +34,13 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
         cursor.moveToPosition(position)
 
         holder.id = cursor.getInt(0)
-        holder.tvEquipo.text = cursor.getString(2)
-        holder.tvCaracteristicas.text = cursor.getString(3)
-        holder.tvEstado.text = cursor.getString(4)
-        holder.tvUsuario.text = cursor.getString(5)
-        holder.tvFecha.text = cursor.getString(6)
-        holder.tvLugar.text = cursor.getString(7)
-        holder.latitud = cursor.getDouble(8)
-        holder.longitud = cursor.getDouble(9)
+        holder.tvEquipo.text = cursor.getString(1)
+        holder.tvCaracteristicas.text = cursor.getString(2)
+        holder.tvEstado.text = cursor.getString(6)
+        holder.tvUsuario.text = cursor.getString(9)
+        holder.tvFecha.text = cursor.getString(7)
+        holder.tvLugar.text = cursor.getString(8)
+
     }
 
     override fun getItemCount(): Int {

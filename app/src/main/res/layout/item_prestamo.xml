@@ -14,15 +14,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="147dp">
 
 
         <TextView
             android:id="@+id/tv_equipo_prestamo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="@string/equipo"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             android:id="@+id/tv_caract"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/caracteristicas"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
             android:id="@+id/tv_estado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/estado"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/fecha_prestamo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_caract" />
@@ -62,7 +62,7 @@
             android:id="@+id/tv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/usuario"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/lugar"
             app:layout_constraintEnd_toEndOf="parent"

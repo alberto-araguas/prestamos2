@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".AgregarActivity">
 
+    <Spinner
+        android:id="@+id/sp_lugar"
+        android:layout_width="242dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/spUser" />
+
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
@@ -70,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spUser2" />
 
     <EditText
-        android:id="@+id/etTitulo"
+        android:id="@+id/et_equipo"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -85,7 +94,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etArtista"
+        android:id="@+id/et_caracteristicas"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -96,19 +105,19 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/et_equipo" />
 
     <Spinner
-        android:id="@+id/spFormato"
+        android:id="@+id/sp_estado"
         android:layout_width="284dp"
         android:layout_height="32dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/etArtista" />
+        app:layout_constraintTop_toBottomOf="@+id/et_caracteristicas" />
 
     <TextView
-        android:id="@+id/tvAgregarFecha"
+        android:id="@+id/tvFechaPrestamo"
         android:layout_width="161dp"
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
@@ -117,7 +126,7 @@
         android:hint="Fecha "
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spFormato" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_estado" />
 
     <Spinner
         android:id="@+id/spUser"
@@ -127,18 +136,6 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/tvAgregarEstudio"
-        android:layout_width="244dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center_vertical"
-        android:hint="Lugar"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spUser" />
 
     <Button
         android:id="@+id/btnAceptar"
@@ -159,7 +156,7 @@
         android:text="@string/estado"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etArtista" />
+        app:layout_constraintTop_toBottomOf="@+id/et_caracteristicas" />
 
     <TextView
         android:id="@+id/textView2"

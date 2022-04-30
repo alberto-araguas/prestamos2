@@ -40,13 +40,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun cargaPrestamos() {
-        val cursor = dbaseHelper.obtenerTodosDiscos(dbaseSQLiteHelper.TABLA_DISCOS, dbaseSQLiteHelper.CAMPO_TITULO)
+        val cursor = dbaseHelper.obtenerTodosPrestamos(dbaseSQLiteHelper.TABLA_PRESTAMOS, dbaseSQLiteHelper.CAMPO_CARACTERISTICAS)
         adaptador.RecyclerViewAdapterPrestamos(this, cursor)
         binding.rvPrestamos.adapter = adaptador
     }
 
     fun cargaBusqueda(campo: String, campoValor: String) {
-        val cursor = dbaseHelper.obtenerCursor(dbaseSQLiteHelper.TABLA_DISCOS, campo,
+        val cursor = dbaseHelper.obtenerCursor(dbaseSQLiteHelper.TABLA_PRESTAMOS, campo,
             campoValor, campo)
         adaptador.RecyclerViewAdapterPrestamos(this, cursor)
         binding.rvPrestamos.adapter = adaptador
@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity() {
             R.id.opBuscar -> {
                 val adaptSpBusca = ArrayAdapter(this,
                     android.R.layout.simple_spinner_item, arrayOf(
-                        dbaseSQLiteHelper.CAMPO_TITULO.capitalize(),
-                        dbaseSQLiteHelper.CAMPO_ARTISTA.capitalize()))
+                        dbaseSQLiteHelper.CAMPO_CARACTERISTICAS.capitalize(),
+                        dbaseSQLiteHelper.CAMPO_FECHACOMPRA.capitalize()))
                 adaptSpBusca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
                 val builder = AlertDialog.Builder(this)
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             else -> {
-                cargaBusqueda(dbaseSQLiteHelper.CAMPO_ESTILO, item.title.toString())
+                cargaBusqueda(dbaseSQLiteHelper.CAMPO_FKFAMILIAEQUIPO, item.title.toString())
                 true
             }
         }

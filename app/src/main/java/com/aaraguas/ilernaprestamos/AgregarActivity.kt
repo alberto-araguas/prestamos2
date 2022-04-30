@@ -5,7 +5,6 @@ import android.R
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -24,11 +23,13 @@ class AgregarActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAgregarBinding
     private lateinit var dbaseHelper: dbaseSQLiteHelper
     private var uriImagen = "android.resource://com.aaraguas.ilernaprestamos/drawable/vinyl"
-    private var latitud : Double = 0.0
-    private var longitud : Double = 0.0
+
 
     val formatos = arrayOf("CD", "LP", "SP", "Digital", "Cassette")
     val estilos = arrayOf("Rock", "Metal", "Soundtrack", "Pop", "Jazz", "Clásica")
+    val estados = arrayOf("NO PRESTADO", "PRESTADO")
+    val lugaresarray = arrayOf("Rock", "Metal", "Soundtrack", "Pop", "Jazz", "Clásica")
+    val usuariosArray = arrayOf("Rock", "Metal", "Soundtrack", "Pop", "Jazz", "Clásica")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,31 +38,51 @@ class AgregarActivity : AppCompatActivity() {
 
         dbaseHelper = dbaseSQLiteHelper(this)
 
-        val adaptadorFormato = ArrayAdapter(this,
+        val adaptadorSpinnerProveedor = ArrayAdapter(this,
                 R.layout.simple_spinner_item, formatos)
-        adaptadorFormato.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        binding.spFormato.adapter = adaptadorFormato
+        adaptadorSpinnerProveedor.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        binding.spEstado.adapter = adaptadorSpinnerProveedor
 
-        val adaptadorEstilo = ArrayAdapter(this,
+        val adaptadorSpinnerFamilia = ArrayAdapter(this,
                 R.layout.simple_spinner_item, estilos)
-        adaptadorEstilo.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        binding.spUser.adapter = adaptadorEstilo
+        adaptadorSpinnerFamilia.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        binding.spFormato2.adapter = adaptadorSpinnerFamilia
+
+        val adaptadorSpinnerEstado = ArrayAdapter(this,
+            R.layout.simple_spinner_item, estados)
+        adaptadorSpinnerEstado.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        binding.spEstado.adapter = adaptadorSpinnerEstado
+
+        val adaptadorSpLugares = ArrayAdapter(this,
+            R.layout.simple_spinner_item, lugaresarray)
+        adaptadorSpLugares.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        binding.spLugar.adapter = adaptadorSpLugares
+
+        val adaptadorSpUsuarios = ArrayAdapter(this,
+            R.layout.simple_spinner_item, usuariosArray)
+        adaptadorSpUsuarios.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        binding.spUser.adapter = adaptadorSpUsuarios
 
         val id = intent.getIntExtra("id", 0)
 
         if (id != 0) {
-            val cursor = dbaseHelper.obtenerPorId(dbaseSQLiteHelper.TABLA_DISCOS, id)
-            uriImagen = cursor.getString(1)
-            binding.etTitulo.setText(cursor.getString(2))
-            binding.etArtista.setText(cursor.getString(3))
-            binding.spFormato.setSelection(
-                adaptadorFormato.getPosition(cursor.getString(4)))
+            val cursor = dbaseHelper.obtenerPorId(dbaseSQLiteHelper.TABLA_PRESTAMOS, id)
+            binding.etEquipo.setText(cursor.getString(1))
+            binding.etCaracteristicas.setText(cursor.getString(2))
+            binding.tvAgregarFechaCompra.setText(cursor.getString(3))
+            binding.spUser2.setSelection(
+                adaptadorSpinnerProveedor.getPosition(cursor.getString(4)))
+            binding.spFormato2.setSelection(
+                adaptadorSpinnerFamilia.getPosition(cursor.getString(5)))
+            binding.spEstado.setSelection(
+                adaptadorSpinnerEstado.getPosition(cursor.getString(6)))
+            binding.tvFechaPrestamo.setText(cursor.getString(7))
+            binding.spLugar.setSelection(
+                adaptadorSpLugares.getPosition(cursor.getString(8)))
             binding.spUser.setSelection(
-                adaptadorEstilo.getPosition(cursor.getString(5)))
-            binding.tvAgregarFecha.text = cursor.getString(6)
-            binding.tvAgregarEstudio.text = cursor.getString(7)
-            latitud = cursor.getDouble(8)
-            longitud = cursor.getDouble(9)
+                adaptadorSpUsuarios.getPosition(cursor.getString(9)))
+
+
             binding.btnAceptar.setText("Modificar")
             dbaseHelper.cerrarDB()
         } else {
@@ -78,9 +99,9 @@ class AgregarActivity : AppCompatActivity() {
             fechaEscogida.set(Calendar.YEAR, anyo)
             fechaEscogida.set(Calendar.MONTH, mes)
             fechaEscogida.set(Calendar.DAY_OF_MONTH, dia)
-            binding.tvAgregarFecha.text = formatter.format(fechaEscogida.time)
+            binding.tvFechaPrestamo.text = formatter.format(fechaEscogida.time)
         }
-        binding.tvAgregarFecha.setOnClickListener {
+        binding.tvFechaPrestamo.setOnClickListener {
             DatePickerDialog(this,
                 listenerFecha,
                 fechaEscogida.get(Calendar.YEAR),
@@ -95,60 +116,66 @@ class AgregarActivity : AppCompatActivity() {
                 fechaEscogida.get(Calendar.DAY_OF_MONTH)).show()
         }
 
-        binding.tvAgregarEstudio.setOnClickListener {
-            val intentMapa = Intent(this, MapsActivity::class.java)
-                .apply {
-                    putExtra("editar", true)
-                    putExtra("estudio", binding.tvAgregarEstudio.text.toString())
-                    putExtra("latitud", latitud)
-                    putExtra("longitud", longitud)
-                }
-            startActivityForResult(intentMapa, REQUEST_MAP)
-        }
+       // binding.splugar.setOnClickListener {
+       //     val intentMapa = Intent(this, MapsActivity::class.java)
+       //         .apply {
+       //             putExtra("editar", true)
+       //             putExtra("estudio", binding.tvAgregarEstudio.text.toString())
+
+       //         }
+        //    startActivityForResult(intentMapa, REQUEST_MAP)
+        //}
 
         binding.btnAceptar.setOnClickListener {
-            if(binding.etTitulo.text.isNotBlank() &&
-                    binding.etArtista.text.isNotBlank() &&
-                    binding.tvAgregarFecha.text.isNotBlank() )
+            if(binding.etEquipo.text.isNotBlank() &&
+                    binding.etCaracteristicas.text.isNotBlank()  )
             {
                 if ((id != 0)) {
-                    dbaseHelper.editarDisco(id,
-                        uriImagen,
-                        binding.etTitulo.text.toString(),
-                        binding.etArtista.text.toString(),
-                        binding.spFormato.selectedItem.toString(),
-                        binding.spUser.selectedItem.toString(),
-                        binding.tvAgregarFecha.text.toString(),
-                        binding.tvAgregarEstudio.text.toString(),
-                        latitud,
-                        longitud)
+                    dbaseHelper.editarPrestamo(id,
+                        binding.etEquipo.text.toString(),
+                        binding.etCaracteristicas.text.toString(),
+                        binding.tvAgregarFechaCompra.text.toString(),
+                        binding.spUser2.selectedItemPosition,
+                        binding.spFormato2.selectedItemPosition,
+                        checkEstado(binding.spEstado.selectedItemPosition),
+                        binding.tvFechaPrestamo.text.toString(),
+                        binding.spLugar.selectedItemPosition,
+                        binding.spUser.selectedItemPosition)
                 } else {
-                    dbaseHelper.agregarDisco(
-                        uriImagen,
-                        binding.etTitulo.text.toString(),
-                        binding.etArtista.text.toString(),
-                        binding.spFormato.selectedItem.toString(),
-                        binding.spUser.selectedItem.toString(),
-                        binding.tvAgregarFecha.text.toString(),
-                        binding.tvAgregarEstudio.text.toString(),
-                        latitud,
-                        longitud)
+                    dbaseHelper.agregarPrestamo(
+                        binding.etEquipo.text.toString(),
+                        binding.etCaracteristicas.text.toString(),
+                        binding.tvAgregarFechaCompra.text.toString(),
+                        binding.spUser2.selectedItemPosition,
+                        binding.spFormato2.selectedItemPosition,
+                        checkEstado(binding.spEstado.selectedItemPosition),
+                        binding.tvFechaPrestamo.text.toString(),
+                        binding.spLugar.selectedItemPosition,
+                        binding.spUser.selectedItemPosition)
                 }
-                binding.etTitulo.text.clear()
-                binding.etArtista.text.clear()
-                binding.tvAgregarFecha.text = ""
-                binding.tvAgregarEstudio.text = ""
-                latitud = 0.0
-                longitud = 0.0
+                binding.etEquipo.text.clear()
+                binding.etCaracteristicas.text.clear()
+                binding.tvFechaPrestamo.text = ""
+                binding.tvAgregarFechaCompra.text = ""
+
+
                 Toast.makeText(this,
                         "Guardado", Toast.LENGTH_SHORT).show()
 
             } else {
                 Toast.makeText(this,
-                    "Hay campos vacíos", Toast.LENGTH_LONG).show()
+                    "Rellenar Equipo y Caracteristicas", Toast.LENGTH_LONG).show()
             }
         }
     }
+
+
+    fun checkEstado (posicion: Int): Boolean {
+
+        return posicion != 0
+
+    }
+
 
     fun mostrarGaleria() {
         if (ContextCompat.checkSelfPermission(this,
@@ -172,9 +199,8 @@ class AgregarActivity : AppCompatActivity() {
         }
 
         if (resultCode == RESULT_OK && requestCode == REQUEST_MAP) {
-            binding.tvAgregarEstudio.text = data?.getStringExtra("estudio")
-            latitud = data?.getDoubleExtra("latitud", 0.0)!!
-            longitud = data?.getDoubleExtra("longitud", 0.0)
+            //binding.tvAgregarEstudio.text = data?.getStringExtra("estudio")
+
         }
     }
 }

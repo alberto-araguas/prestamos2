@@ -7,22 +7,22 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
-    context, "prestamos.db", null, 9) {
+    context, "prestamos.db", null, 11) {
 
     private lateinit var db : SQLiteDatabase
 
     companion object {
-        val TABLA_DISCOS = "discos"
+        val TABLA_PRESTAMOS = "equipo"
         val CAMPO_ID = "_id"
-        val CAMPO_PORTADA = "portada"
-        val CAMPO_TITULO = "titulo"
-        val CAMPO_ARTISTA = "artista"
-        val CAMPO_FORMATO = "formato"
-        val CAMPO_ESTILO = "estilo"
-        val CAMPO_FECHA = "fecha"
-        val CAMPO_ESTUDIO = "estudio"
-        val CAMPO_LATITUD = "latitud"
-        val CAMPO_LONGITUD = "longitud"
+        val CAMPO_NOMBREEQUIPO = "nombre"
+        val CAMPO_CARACTERISTICAS = "caracteristicas"
+        val CAMPO_FECHACOMPRA = "fecha_compra"
+        val CAMPO_FKPROVEEDOREQUIPO = "id_proveedor"
+        val CAMPO_FKFAMILIAEQUIPO = "id_familia"
+        val CAMPO_ESTADOPRESTAMO = "estado_prestado"
+        val CAMPO_FECHAPRESTAMO = "fecha_prestamo"
+        val CAMPO_FKLUGARPRESTAMO = "id_lugar_prestamo"
+        val CAMPO_FKUSUARIOPRESTAMO = "id_usuario"
         //tabla familia
         val TABLA_FAMILIA = "familia"
         val CAMPO_IDF = "_idF"
@@ -51,28 +51,28 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val CAMPO_USCORREO = "usuarios_correo"
         val CAMPO_USDEPARTAMENTO = "usuarios_departamento"
         //tabla equipo
-        val TABLA_EQUIPOS = "equipos"
-        val CAMPO_IDEQ = "_idEquipo"
-        val CAMPO_EQNOMBRE = "equipos_nombre"
-        val CAMPO_EQCARAC= "equipos_caracteristicas"
-        val CAMPO_EQFECHACOMPRA = "equipos_fechacompra"
-        val CAMPO_FKPROVEEDOR = "equipos_idproveedor"
-        val CAMPO_FKFAMILIA = "equipos_idfamilia"
-        val CAMPO_EQESTADO = "equipos_estado"
-        val CAMPO_EQFECHAPRESTAMO = "equipos_fechaprestamo"
-        val CAMPO_FKLUGAR = "equipos_idlugar"
-        val CAMPO_FKUSUARIO = "equipos_idusuario"
+        //val TABLA_EQUIPOS = "equipos"
+        //val CAMPO_IDEQ = "_idEquipo"
+        //val CAMPO_EQNOMBRE = "equipos_nombre"
+        //val CAMPO_EQCARAC= "equipos_caracteristicas"
+        //val CAMPO_EQFECHACOMPRA = "equipos_fechacompra"
+        //val CAMPO_FKPROVEEDOR = "equipos_idproveedor"
+        //val CAMPO_FKFAMILIA = "equipos_idfamilia"
+        //val CAMPO_EQESTADO = "equipos_estado"
+        //val CAMPO_EQFECHAPRESTAMO = "equipos_fechaprestamo"
+        //val CAMPO_FKLUGAR = "equipos_idlugar"
+        //val CAMPO_FKUSUARIO = "equipos_idusuario"
 
 
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val ordenCreacion = "CREATE TABLE $TABLA_DISCOS " +
-                "($CAMPO_ID INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_PORTADA TEXT, " +
-                "$CAMPO_TITULO TEXT, $CAMPO_ARTISTA TEXT, $CAMPO_FORMATO TEXT, " +
-                "$CAMPO_ESTILO TEXT, $CAMPO_FECHA TEXT, $CAMPO_ESTUDIO TEXT, " +
-                "$CAMPO_LATITUD REAL, $CAMPO_LONGITUD REAL)"
-        db!!.execSQL(ordenCreacion)
+        //val ordenCreacion = "CREATE TABLE $TABLA_PRESTAMOS " +
+        //        "($CAMPO_ID INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOMBREEQUIPO TEXT, " +
+        //        "$CAMPO_CARACTERISTICAS TEXT, $CAMPO_FECHACOMPRA TEXT, $CAMPO_FKPROVEEDOREQUIPO TEXT, " +
+        //        "$CAMPO_FKFAMILIAEQUIPO TEXT, $CAMPO_ESTADOPRESTAMO TEXT, $CAMPO_FECHAPRESTAMO TEXT, " +
+        //        "$CAMPO_FKLUGARPRESTAMO REAL, $CAMPO_FKUSUARIOPRESTAMO REAL)"
+        //db!!.execSQL(ordenCreacion)
 
         val ordenCreacionFamilia = "CREATE TABLE $TABLA_FAMILIA " +
                 "($CAMPO_IDF INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_FNOMBRE TEXT )"
@@ -90,15 +90,15 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db!!.execSQL(ordenCreacionproveedores)
 
         val ordenCreacionusuarios = "CREATE TABLE $TABLA_USUARIOS " +
-                "($CAMPO_IDUS INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_EQNOMBRE TEXT, " +
-                "$CAMPO_EQCARAC TEXT, $CAMPO_USTELEFONO LONG , $CAMPO_USCORREO TEXT, $CAMPO_USDEPARTAMENTO TEXT)"
+                "($CAMPO_IDUS INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_USNOMBRE TEXT, " +
+                "$CAMPO_USDIRECCION TEXT, $CAMPO_USTELEFONO LONG , $CAMPO_USCORREO TEXT, $CAMPO_USDEPARTAMENTO TEXT)"
         db!!.execSQL(ordenCreacionusuarios)
 
-        val ordenCreacionequipos = "CREATE TABLE $TABLA_EQUIPOS " +
-                "($CAMPO_IDEQ INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_USNOMBRE TEXT, " +
-                "$CAMPO_USDIRECCION TEXT, $CAMPO_EQFECHACOMPRA TEXT , $CAMPO_FKPROVEEDOR INTEGER, " +
-                "$CAMPO_FKFAMILIA INTEGER, $CAMPO_EQESTADO BOOLEAN, $CAMPO_EQFECHAPRESTAMO TEXT, " +
-                "$CAMPO_FKLUGAR INTEGER, $CAMPO_FKUSUARIO INTEGER )"
+        val ordenCreacionequipos = "CREATE TABLE $TABLA_PRESTAMOS " +
+                "($CAMPO_ID INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOMBREEQUIPO TEXT, " +
+                "$CAMPO_CARACTERISTICAS TEXT, $CAMPO_FECHACOMPRA TEXT , $CAMPO_FKPROVEEDOREQUIPO INTEGER, " +
+                "$CAMPO_FKFAMILIAEQUIPO INTEGER, $CAMPO_ESTADOPRESTAMO BOOLEAN, $CAMPO_FECHAPRESTAMO TEXT, " +
+                "$CAMPO_FKLUGARPRESTAMO INTEGER, $CAMPO_FKUSUARIOPRESTAMO INTEGER )"
         db!!.execSQL(ordenCreacionequipos)
 
     }
@@ -116,10 +116,12 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db!!.execSQL(ordenBorradoUsuario)
         val ordenBorradoEquipo = "DROP TABLE IF EXISTS equipos"
         db!!.execSQL(ordenBorradoEquipo)
+        val ordenBorradoEquipo2 = "DROP TABLE IF EXISTS equipo"
+        db!!.execSQL(ordenBorradoEquipo2)
         onCreate(db)
     }
 
-    fun obtenerTodosDiscos(tabla: String, campoOrden: String): Cursor {
+    fun obtenerTodosPrestamos(tabla: String, campoOrden: String): Cursor {
         db = this.readableDatabase
         val cursor = db.rawQuery("SELECT * FROM $tabla ORDER BY $campoOrden", null)
         return cursor
@@ -141,61 +143,52 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         return cursor
     }
 
-    fun agregarDisco(portada: String, titulo: String, artista: String, formato: String,
-                     estilo: String, fecha: String, estudio: String, latitud: Double, longitud: Double) {
+    fun agregarPrestamo(equipo: String, caracteristk: String, fechacompra: String, proveedor: Int,
+                        familia: Int, Estado: Boolean, fechaprest: String, lugar: Int, usuario: Int) {
         val datos = ContentValues()
-        datos.put(CAMPO_PORTADA, portada)
-        datos.put(CAMPO_TITULO, titulo)
-        datos.put(CAMPO_ARTISTA, artista)
-        datos.put(CAMPO_FORMATO,formato)
-        datos.put(CAMPO_ESTILO, estilo)
-        datos.put(CAMPO_FECHA, fecha)
-        datos.put(CAMPO_ESTUDIO, estudio)
-        datos.put(CAMPO_LATITUD, latitud)
-        datos.put(CAMPO_LONGITUD, longitud)
+        datos.put(CAMPO_NOMBREEQUIPO, equipo)
+        datos.put(CAMPO_CARACTERISTICAS, caracteristk)
+        datos.put(CAMPO_FECHACOMPRA, fechacompra)
+        datos.put(CAMPO_FKPROVEEDOREQUIPO,proveedor)
+        datos.put(CAMPO_FKFAMILIAEQUIPO, familia)
+        datos.put(CAMPO_ESTADOPRESTAMO, Estado)
+        datos.put(CAMPO_FECHAPRESTAMO, fechaprest)
+        datos.put(CAMPO_FKLUGARPRESTAMO, lugar)
+        datos.put(CAMPO_FKUSUARIOPRESTAMO, usuario)
 
         val db = this.writableDatabase
-        db.insert(TABLA_DISCOS, null, datos)
+        db.insert(TABLA_PRESTAMOS, null, datos)
         db.close()
     }
 
 
-    fun editarDisco(id: Int, portada: String, titulo: String, artista: String, formato: String,
-                    estilo: String, fecha: String, estudio: String, latitud: Double, longitud: Double) {
+    fun editarPrestamo(id: Int, equipo: String, caracteristk: String, fechacompra: String, proveedor: Int,
+                       familia: Int, Estado: Boolean, fechaprest: String, lugar: Int, usuario: Int) {
         val args = arrayOf(id.toString())
         val datos = ContentValues()
-        datos.put(CAMPO_PORTADA, portada)
-        datos.put(CAMPO_TITULO, titulo)
-        datos.put(CAMPO_ARTISTA, artista)
-        datos.put(CAMPO_FORMATO,formato)
-        datos.put(CAMPO_ESTILO, estilo)
-        datos.put(CAMPO_FECHA, fecha)
-        datos.put(CAMPO_ESTUDIO, estudio)
-        datos.put(CAMPO_LATITUD, latitud)
-        datos.put(CAMPO_LONGITUD, longitud)
+        datos.put(CAMPO_NOMBREEQUIPO, equipo)
+        datos.put(CAMPO_CARACTERISTICAS, caracteristk)
+        datos.put(CAMPO_FECHACOMPRA, fechacompra)
+        datos.put(CAMPO_FKPROVEEDOREQUIPO,proveedor)
+        datos.put(CAMPO_FKFAMILIAEQUIPO, familia)
+        datos.put(CAMPO_ESTADOPRESTAMO, Estado)
+        datos.put(CAMPO_FECHAPRESTAMO, fechaprest)
+        datos.put(CAMPO_FKLUGARPRESTAMO, lugar)
+        datos.put(CAMPO_FKUSUARIOPRESTAMO, usuario)
         val db = this.writableDatabase
-        db.update(TABLA_DISCOS, datos, "$CAMPO_ID = ?", args)
+        db.update(TABLA_PRESTAMOS, datos, "$CAMPO_ID = ?", args)
         db.close()
     }
 
     fun borrarDisco(id: Int) : Int {
         val args = arrayOf(id.toString())
         val db = this.writableDatabase
-        val borrados = db.delete(TABLA_DISCOS, "$CAMPO_ID = ?", args)
+        val borrados = db.delete(TABLA_PRESTAMOS, "$CAMPO_ID = ?", args)
         db.close()
         return borrados
     }
 
-    //CRUD TABLA FAMILIA
-    fun agregarFamilia(familia_nombre: String) {
-        val datos = ContentValues()
-        datos.put(CAMPO_FNOMBRE, familia_nombre)
 
-
-        val db = this.writableDatabase
-        db.insert(TABLA_FAMILIA, null, datos)
-        db.close()
-    }
 
     //CRUD TABLA LUGARES
     fun agregarLugar(lugar_nombre: String,lugar_direccion: String,lugar_telefono: Long,lugar_correo: String) {
