@@ -50,7 +50,13 @@ class FamiliaActivity: AppCompatActivity() {
         db.close()
     }
 
+    private fun borraFamilia(iden:String){
+        familiaDBHelper.borraFamilia(iden)
+        val intent = Intent(this, FamiliaActivity::class.java).apply {
 
+        }
+        startActivity(intent)
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_familia, menu)
@@ -62,7 +68,10 @@ class FamiliaActivity: AppCompatActivity() {
         return when (item.itemId) {
 
             R.id.opFamiliaInsertar -> {
+                val intent = Intent(this, agregarFamilia::class.java).apply {
 
+                }
+                startActivity(intent)
                 true
             }
             R.id.opFamiliaBorrar -> {
@@ -72,7 +81,7 @@ class FamiliaActivity: AppCompatActivity() {
                 builder.setView(dView)
                 builder.setPositiveButton(android.R.string.ok) {
                         dialogo, _ ->
-                    //borraUsuario( (dialogo as AlertDialog).etBorra.text.toString() )
+                    borraFamilia( (dialogo as AlertDialog).etBorra.text.toString() )
                 }
                 builder.setNegativeButton(android.R.string.cancel, null)
                 builder.show()
@@ -86,7 +95,7 @@ class FamiliaActivity: AppCompatActivity() {
                 true
             }
             else -> {
-                //cargaBusqueda(dbaseSQLiteHelper.CAMPO_ESTILO, item.title.toString())
+
                 true
             }
         }

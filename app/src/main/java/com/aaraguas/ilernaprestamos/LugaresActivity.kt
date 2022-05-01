@@ -49,7 +49,13 @@ class LugaresActivity: AppCompatActivity() {
         super.onDestroy()
         db.close()
     }
+    private fun borraLugar(iden:String){
+        lugaresDBHelper.borraLugar(iden)
+        val intent = Intent(this, LugaresActivity::class.java).apply {
 
+        }
+        startActivity(intent)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -62,7 +68,10 @@ class LugaresActivity: AppCompatActivity() {
         return when (item.itemId) {
 
             R.id.opLugarInsertar -> {
+                val intent = Intent(this, agregarLugar::class.java).apply {
 
+                }
+                startActivity(intent)
                 true
             }
             R.id.opLugarBorrar -> {
@@ -72,7 +81,7 @@ class LugaresActivity: AppCompatActivity() {
                 builder.setView(dView)
                 builder.setPositiveButton(android.R.string.ok) {
                         dialogo, _ ->
-                    //borraUsuario( (dialogo as AlertDialog).etBorra.text.toString() )
+                    borraLugar( (dialogo as AlertDialog).etBorra.text.toString() )
                 }
                 builder.setNegativeButton(android.R.string.cancel, null)
                 builder.show()

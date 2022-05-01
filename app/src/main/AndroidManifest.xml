@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.prestamostheme">
         <activity
+            android:name=".agregarFamilia"
+            android:exported="false" />
+        <activity
+            android:name=".agregarLugar"
+            android:exported="false" />
+        <activity
             android:name=".agregarProveedor"
             android:exported="false" />
         <activity

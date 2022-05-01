@@ -185,7 +185,7 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
 
 
     //CRUD TABLA LUGARES
-    fun agregarLugar(lugar_nombre: String,lugar_direccion: String,lugar_telefono: Long,lugar_correo: String) {
+    fun agregarLugar(lugar_nombre: String,lugar_direccion: String,lugar_telefono: Int,lugar_correo: String) {
         val datos = ContentValues()
         datos.put(CAMPO_LNOMBRE, lugar_nombre)
         datos.put(CAMPO_LDIRECCION, lugar_direccion)
@@ -210,7 +210,11 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         return miLista
     }
 
-
+    fun borraLugar(iden:String){
+        val args = arrayOf(iden.toString())
+        db = this.writableDatabase
+        val borrados = db.delete(TABLA_LUGARES, "$CAMPO_IDL = ?", args)
+    }
 
     //CRUD TABLA FAMILIA
     fun agregarFamilia(lugar_nombre: String) {
@@ -234,7 +238,11 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.close()
         return miLista
     }
-
+    fun borraFamilia(iden:String){
+        val args = arrayOf(iden.toString())
+        db = this.writableDatabase
+        val borrados = db.delete(TABLA_FAMILIA, "$CAMPO_IDF = ?", args)
+    }
 
     //CRUD TABLA PROVEEDORES
     fun agregarProveedor(prov_nombre: String,prov_direccion: String,prov_telefono: Int,prov_correo: String,prov_contacto: String) {
