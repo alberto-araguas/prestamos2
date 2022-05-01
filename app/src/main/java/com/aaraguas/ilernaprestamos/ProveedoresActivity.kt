@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aaraguas.ilernaprestamos.Adapters.RecycleViewAdapterLugares
 import com.aaraguas.ilernaprestamos.Adapters.RecyclerViewAdapterProveedores
 import com.aaraguas.ilernaprestamos.databinding.ActivityProveedoresBinding
+import kotlinx.android.synthetic.main.layout_borra.*
 
 class ProveedoresActivity : AppCompatActivity() {
 
@@ -64,6 +66,16 @@ class ProveedoresActivity : AppCompatActivity() {
                 true
             }
             R.id.opProveedorBorrar -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Borrar")
+                val dView = layoutInflater.inflate(R.layout.layout_borra, null)
+                builder.setView(dView)
+                builder.setPositiveButton(android.R.string.ok) {
+                        dialogo, _ ->
+                    //borraUsuario( (dialogo as AlertDialog).etBorra.text.toString() )
+                }
+                builder.setNegativeButton(android.R.string.cancel, null)
+                builder.show()
                 true
             }
             R.id.opProveedorVolver -> {
