@@ -96,16 +96,7 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
                 true
             }
 
-            tvLugar.setOnClickListener {
-                val intentMapa = Intent(context, MapsActivity::class.java)
-                    .apply {
-                        putExtra("estudio", tvLugar.text.toString())
-                        putExtra("latitud", latitud)
-                        putExtra("longitud", longitud)
-                    }
-                context.startActivity(intentMapa)
-                true
-            }
+
         }
 
         override fun onMenuItemClick(item: MenuItem?): Boolean {

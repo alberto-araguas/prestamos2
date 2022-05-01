@@ -74,7 +74,7 @@ class ProveedoresActivity : AppCompatActivity() {
                 true
             }
             else -> {
-                //cargaBusqueda(dbaseSQLiteHelper.CAMPO_ESTILO, item.title.toString())
+
                 true
             }
         }

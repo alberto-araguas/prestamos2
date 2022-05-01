@@ -1,28 +1,22 @@
 package com.aaraguas.ilernaprestamos
 
-import android.Manifest
+
 import android.R
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.aaraguas.ilernaprestamos.databinding.ActivityAgregarBinding
-
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AgregarActivity : AppCompatActivity() {
 
-    private val REQUEST_GALLERY = 1001
-    private val REQUEST_MAP = 1002
     private lateinit var binding: ActivityAgregarBinding
     private lateinit var dbaseHelper: dbaseSQLiteHelper
-    private var uriImagen = "android.resource://com.aaraguas.ilernaprestamos/drawable/vinyl"
 
 
     var proveedorArray = ArrayList<String>()
@@ -32,8 +26,7 @@ class AgregarActivity : AppCompatActivity() {
     var usuariosArray = ArrayList<String>()
 
 
-
-
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAgregarBinding.inflate(layoutInflater)
@@ -93,13 +86,13 @@ class AgregarActivity : AppCompatActivity() {
             binding.btnAceptar.setText("Modificar")
             dbaseHelper.cerrarDB()
         } else {
-
+            true
         }
 
 
 
         val formatter = SimpleDateFormat("dd/MM/yyyy")
-        var fechaEscogida = Calendar.getInstance()
+        val fechaEscogida = Calendar.getInstance()
         val listenerFecha = DatePickerDialog.OnDateSetListener {
                 datePicker, anyo, mes, dia ->
             fechaEscogida.clear()
@@ -176,30 +169,5 @@ class AgregarActivity : AppCompatActivity() {
     }
 
 
-    fun mostrarGaleria() {
-        if (ContextCompat.checkSelfPermission(this,
-            Manifest.permission.READ_EXTERNAL_STORAGE) !=
-                PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_GALLERY)
-        } else {
-            val intentGaleria = Intent(Intent.ACTION_GET_CONTENT)
-            intentGaleria.type = "image/*"
-            startActivityForResult(intentGaleria, REQUEST_GALLERY)
-        }
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == REQUEST_GALLERY) {
-            uriImagen = data?.data.toString()
-            //binding.ivAgregarPortada.setImageURI(data?.data)
-        }
-
-        if (resultCode == RESULT_OK && requestCode == REQUEST_MAP) {
-            //binding.tvAgregarEstudio.text = data?.getStringExtra("estudio")
-
-        }
-    }
 }

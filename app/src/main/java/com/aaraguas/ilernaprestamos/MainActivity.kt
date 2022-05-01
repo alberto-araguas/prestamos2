@@ -12,6 +12,7 @@ import com.aaraguas.ilernaprestamos.Adapters.RecyclerViewAdapterPrestamos
 import com.aaraguas.ilernaprestamos.databinding.ActivityMainBinding
 
 import kotlinx.android.synthetic.main.layout_busca.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,18 +45,18 @@ class MainActivity : AppCompatActivity() {
         adaptador.RecyclerViewAdapterPrestamos(this, cursor)
         binding.rvPrestamos.adapter = adaptador
     }
-    fun cargaSoloPrestados() {
+    private fun cargaSoloPrestados() {
         val cursor = dbaseHelper.obtenerSoloPrestados()
         adaptador.RecyclerViewAdapterPrestamos(this, cursor)
         binding.rvPrestamos.adapter = adaptador
     }
-    fun cargaNoPrestados() {
+    private fun cargaNoPrestados() {
         val cursor = dbaseHelper.obtenerNoPrestados()
         adaptador.RecyclerViewAdapterPrestamos(this, cursor)
         binding.rvPrestamos.adapter = adaptador
     }
 
-    fun cargaBusqueda(campo: String, campoValor: String) {
+    private fun cargaBusqueda(campo: String, campoValor: String) {
         val cursor = dbaseHelper.obtenerCursor(dbaseSQLiteHelper.TABLA_PRESTAMOS, campo,
             campoValor, campo)
         adaptador.RecyclerViewAdapterPrestamos(this, cursor)
@@ -74,7 +75,11 @@ class MainActivity : AppCompatActivity() {
                 val adaptSpBusca = ArrayAdapter(this,
                     android.R.layout.simple_spinner_item, arrayOf(
                         dbaseSQLiteHelper.CAMPO_NOMBREEQUIPO.capitalize(),
-                        dbaseSQLiteHelper.CAMPO_CARACTERISTICAS.capitalize()))
+                        dbaseSQLiteHelper.CAMPO_CARACTERISTICAS.replaceFirstChar {
+                            if (it.isLowerCase()) it.titlecase(
+                                Locale.getDefault()
+                            ) else it.toString()
+                        }))
                 adaptSpBusca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
                 val builder = AlertDialog.Builder(this)
@@ -86,8 +91,9 @@ class MainActivity : AppCompatActivity() {
                 builder.setPositiveButton(android.R.string.ok) {
                         dialogo, _ ->
                     cargaBusqueda(
-                        (dialogo as AlertDialog).spBusca.selectedItem.toString().toLowerCase(),
-                        (dialogo as AlertDialog).etBusca.text.toString())
+                        (dialogo as AlertDialog).spBusca.selectedItem.toString()
+                            .lowercase(Locale.getDefault()),
+                        dialogo.etBusca.text.toString())
                 }
                 builder.setNegativeButton(android.R.string.cancel, null)
                 builder.show()

@@ -5,19 +5,13 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aaraguas.ilernaprestamos.Adapters.RecycleViewAdapterFamilia
-import com.aaraguas.ilernaprestamos.R
-import com.aaraguas.ilernaprestamos.databinding.ActivityAgregarBinding
 import com.aaraguas.ilernaprestamos.databinding.ActivityFamiliaBinding
-import kotlinx.android.synthetic.main.layout_busca.*
+
 
 class FamiliaActivity: AppCompatActivity() {
 

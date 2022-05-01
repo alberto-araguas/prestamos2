@@ -1,5 +1,6 @@
 package com.aaraguas.ilernaprestamos
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -50,74 +51,57 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val CAMPO_USTELEFONO = "usuarios_telefono"
         val CAMPO_USCORREO = "usuarios_correo"
         val CAMPO_USDEPARTAMENTO = "usuarios_departamento"
-        //tabla equipo
-        //val TABLA_EQUIPOS = "equipos"
-        //val CAMPO_IDEQ = "_idEquipo"
-        //val CAMPO_EQNOMBRE = "equipos_nombre"
-        //val CAMPO_EQCARAC= "equipos_caracteristicas"
-        //val CAMPO_EQFECHACOMPRA = "equipos_fechacompra"
-        //val CAMPO_FKPROVEEDOR = "equipos_idproveedor"
-        //val CAMPO_FKFAMILIA = "equipos_idfamilia"
-        //val CAMPO_EQESTADO = "equipos_estado"
-        //val CAMPO_EQFECHAPRESTAMO = "equipos_fechaprestamo"
-        //val CAMPO_FKLUGAR = "equipos_idlugar"
-        //val CAMPO_FKUSUARIO = "equipos_idusuario"
+
 
 
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        //val ordenCreacion = "CREATE TABLE $TABLA_PRESTAMOS " +
-        //        "($CAMPO_ID INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOMBREEQUIPO TEXT, " +
-        //        "$CAMPO_CARACTERISTICAS TEXT, $CAMPO_FECHACOMPRA TEXT, $CAMPO_FKPROVEEDOREQUIPO TEXT, " +
-        //        "$CAMPO_FKFAMILIAEQUIPO TEXT, $CAMPO_ESTADOPRESTAMO TEXT, $CAMPO_FECHAPRESTAMO TEXT, " +
-        //        "$CAMPO_FKLUGARPRESTAMO REAL, $CAMPO_FKUSUARIOPRESTAMO REAL)"
-        //db!!.execSQL(ordenCreacion)
 
         val ordenCreacionFamilia = "CREATE TABLE $TABLA_FAMILIA " +
                 "($CAMPO_IDF INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_FNOMBRE TEXT )"
 
-        db!!.execSQL(ordenCreacionFamilia)
+        db?.execSQL(ordenCreacionFamilia)
 
         val ordenCreacionlugares = "CREATE TABLE $TABLA_LUGARES " +
                 "($CAMPO_IDL INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_LNOMBRE TEXT, " +
                 "$CAMPO_LDIRECCION TEXT, $CAMPO_LTELEFONO LONG , $CAMPO_LCORREO TEXT)"
-        db!!.execSQL(ordenCreacionlugares)
+        db?.execSQL(ordenCreacionlugares)
 
         val ordenCreacionproveedores = "CREATE TABLE $TABLA_PROVEEDORES " +
                 "($CAMPO_IDP INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_PNOMBRE TEXT, " +
                 "$CAMPO_PDIRECCION TEXT, $CAMPO_PTELEFONO LONG , $CAMPO_PCORREO TEXT, $CAMPO_PCONTACTO TEXT)"
-        db!!.execSQL(ordenCreacionproveedores)
+        db?.execSQL(ordenCreacionproveedores)
 
         val ordenCreacionusuarios = "CREATE TABLE $TABLA_USUARIOS " +
                 "($CAMPO_IDUS INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_USNOMBRE TEXT, " +
                 "$CAMPO_USDIRECCION TEXT, $CAMPO_USTELEFONO LONG , $CAMPO_USCORREO TEXT, $CAMPO_USDEPARTAMENTO TEXT)"
-        db!!.execSQL(ordenCreacionusuarios)
+        db?.execSQL(ordenCreacionusuarios)
 
         val ordenCreacionequipos = "CREATE TABLE $TABLA_PRESTAMOS " +
                 "($CAMPO_ID INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOMBREEQUIPO TEXT, " +
                 "$CAMPO_CARACTERISTICAS TEXT, $CAMPO_FECHACOMPRA TEXT , $CAMPO_FKPROVEEDOREQUIPO INTEGER, " +
                 "$CAMPO_FKFAMILIAEQUIPO INTEGER, $CAMPO_ESTADOPRESTAMO BOOLEAN, $CAMPO_FECHAPRESTAMO TEXT, " +
                 "$CAMPO_FKLUGARPRESTAMO INTEGER, $CAMPO_FKUSUARIOPRESTAMO INTEGER )"
-        db!!.execSQL(ordenCreacionequipos)
+        db?.execSQL(ordenCreacionequipos)
 
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         val ordenBorrado = "DROP TABLE IF EXISTS discos"
-        db!!.execSQL(ordenBorrado)
+        db?.execSQL(ordenBorrado)
         val ordenBorradoFamilia = "DROP TABLE IF EXISTS familia"
-        db!!.execSQL(ordenBorradoFamilia)
+        db?.execSQL(ordenBorradoFamilia)
         val ordenBorradoLugares = "DROP TABLE IF EXISTS lugares"
-        db!!.execSQL(ordenBorradoLugares)
+        db?.execSQL(ordenBorradoLugares)
         val ordenBorradoProveedores = "DROP TABLE IF EXISTS proveedores"
-        db!!.execSQL(ordenBorradoProveedores)
+        db?.execSQL(ordenBorradoProveedores)
         val ordenBorradoUsuario = "DROP TABLE IF EXISTS usuarios"
-        db!!.execSQL(ordenBorradoUsuario)
+        db?.execSQL(ordenBorradoUsuario)
         val ordenBorradoEquipo = "DROP TABLE IF EXISTS equipos"
-        db!!.execSQL(ordenBorradoEquipo)
+        db?.execSQL(ordenBorradoEquipo)
         val ordenBorradoEquipo2 = "DROP TABLE IF EXISTS equipo"
-        db!!.execSQL(ordenBorradoEquipo2)
+        db?.execSQL(ordenBorradoEquipo2)
         onCreate(db)
     }
 
@@ -212,6 +196,7 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.insert(TABLA_LUGARES, null, datos)
         db.close()
     }
+    @SuppressLint("Recycle")
     fun cargarNombresLugares():ArrayList<String> {
         val miLista = ArrayList<String>()
         db = this.readableDatabase
@@ -236,6 +221,7 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.insert(TABLA_FAMILIA, null, datos)
         db.close()
     }
+    @SuppressLint("Recycle")
     fun cargarNombresFamilias():ArrayList<String> {
         val miLista = ArrayList<String>()
         db = this.readableDatabase
@@ -264,6 +250,7 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.close()
     }
 
+    @SuppressLint("Recycle")
     fun cargarNombresProveedores():ArrayList<String>{
         val miLista = ArrayList<String>()
 
@@ -294,8 +281,9 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.insert(TABLA_USUARIOS, null, datos)
         db.close()
     }
+    @SuppressLint("Recycle")
     fun cargarNombresUsuarios():ArrayList<String>{
-        var miLista = ArrayList<String>()
+        val miLista = ArrayList<String>()
         db = this.readableDatabase
         val cursoru = db.rawQuery("SELECT $CAMPO_USNOMBRE FROM $TABLA_USUARIOS ORDER BY $CAMPO_IDUS" , null)
         cursoru.moveToFirst()
