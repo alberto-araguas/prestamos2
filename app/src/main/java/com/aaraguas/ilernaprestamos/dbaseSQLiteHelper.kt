@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
-    context, "prestamos.db", null, 12) {
+    context, "prestamos.db", null, 2) {
 
     private lateinit var db : SQLiteDatabase
 
