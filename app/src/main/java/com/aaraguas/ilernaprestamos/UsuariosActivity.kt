@@ -1,5 +1,7 @@
 package com.aaraguas.ilernaprestamos
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -61,12 +63,16 @@ class UsuariosActivity : AppCompatActivity() {
         usuariosDBHelper.borraUsuario(iden)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
 
             R.id.opUsuarioInsertar -> {
+                val intent = Intent(this, agregarUsuario::class.java).apply {
 
+                }
+                startActivity(intent)
                 true
             }
             R.id.opUsuarioBorrar -> {

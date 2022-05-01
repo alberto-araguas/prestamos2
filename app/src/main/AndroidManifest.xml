@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.prestamostheme">
         <activity
+            android:name=".agregarUsuario"
+            android:exported="false" />
+        <activity
             android:name=".FamiliaActivity"
             android:exported="false" />
         <activity
@@ -23,17 +26,21 @@
         <activity
             android:name=".UsuariosActivity"
             android:exported="false" />
-        <activity android:name="com.aaraguas.ilernaprestamos.SplashscreenActivity">
+        <activity
+            android:name=".AgregarUsuarios"
+            android:exported="false" />
+        <activity android:name=".SplashscreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.aaraguas.ilernaprestamos.AgregarActivity" />
-        <activity android:name="com.aaraguas.ilernaprestamos.MainActivity">
+        <activity android:name=".AgregarActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
