@@ -196,8 +196,6 @@ class AgregarActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-        } else {
-            Toast.makeText(this, "RELLENAR ANTES LOS DATOS DE USUARIOS", Toast.LENGTH_SHORT).show()
         }
 
     }

@@ -7,10 +7,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aaraguas.ilernaprestamos.Adapters.RecyclerViewAdapterUsuarios
 import com.aaraguas.ilernaprestamos.databinding.ActivityUsuariosBinding
+import kotlinx.android.synthetic.main.layout_borra.*
+import kotlinx.android.synthetic.main.layout_busca.*
+import java.util.*
 
 
 class UsuariosActivity : AppCompatActivity() {
@@ -28,6 +32,7 @@ class UsuariosActivity : AppCompatActivity() {
         usuariosDBHelper=dbaseSQLiteHelper(this)
 
         //usuariosDBHelper.agregarUsuario("ALBERTO ARAGUAS GARCES","Calle Mayor 47",333333333,"albertoaraguas@jotamail.com","DEPORTES")
+        //usuariosDBHelper.agregarUsuario("ALBERTO 2","Calle Mayor 47",333333333,"albertoaraguas@jotamail.com","DEPORTES")
 
 
         db=usuariosDBHelper.readableDatabase
@@ -52,6 +57,10 @@ class UsuariosActivity : AppCompatActivity() {
         return true
     }
 
+    private fun borraUsuario(iden:String){
+        usuariosDBHelper.borraUsuario(iden)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
@@ -61,6 +70,16 @@ class UsuariosActivity : AppCompatActivity() {
                 true
             }
             R.id.opUsuarioBorrar -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Borrar")
+                val dView = layoutInflater.inflate(R.layout.layout_borra, null)
+                builder.setView(dView)
+                builder.setPositiveButton(android.R.string.ok) {
+                        dialogo, _ ->
+                    borraUsuario( (dialogo as AlertDialog).etBorra.text.toString() )
+                }
+                builder.setNegativeButton(android.R.string.cancel, null)
+                builder.show()
                 true
             }
             R.id.opUsuarioVolver -> {

@@ -294,6 +294,12 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         return miLista
     }
 
+    fun borraUsuario(iden:String){
+        val args = arrayOf(iden.toString())
+        db = this.writableDatabase
+        val borrados = db.delete(TABLA_USUARIOS, "$CAMPO_IDUS = ?", args)
+    }
+
     fun cerrarDB() {
         db.close()
     }
