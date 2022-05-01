@@ -61,6 +61,10 @@ class UsuariosActivity : AppCompatActivity() {
 
     private fun borraUsuario(iden:String){
         usuariosDBHelper.borraUsuario(iden)
+        val intent = Intent(this, UsuariosActivity::class.java).apply {
+
+        }
+        startActivity(intent)
     }
 
 

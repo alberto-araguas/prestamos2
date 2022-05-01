@@ -50,7 +50,13 @@ class ProveedoresActivity : AppCompatActivity() {
         db.close()
     }
 
+    private fun borraProveedor(iden:String){
+        proveedoresDBHelper.borraProveedor(iden)
+        val intent = Intent(this, ProveedoresActivity::class.java).apply {
 
+        }
+        startActivity(intent)
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_proveedores, menu)
@@ -62,7 +68,10 @@ class ProveedoresActivity : AppCompatActivity() {
         return when (item.itemId) {
 
             R.id.opProveedorInsertar -> {
+                val intent = Intent(this, agregarProveedor::class.java).apply {
 
+                }
+                startActivity(intent)
                 true
             }
             R.id.opProveedorBorrar -> {
@@ -72,7 +81,7 @@ class ProveedoresActivity : AppCompatActivity() {
                 builder.setView(dView)
                 builder.setPositiveButton(android.R.string.ok) {
                         dialogo, _ ->
-                    //borraUsuario( (dialogo as AlertDialog).etBorra.text.toString() )
+                    borraProveedor( (dialogo as AlertDialog).etBorra.text.toString() )
                 }
                 builder.setNegativeButton(android.R.string.cancel, null)
                 builder.show()

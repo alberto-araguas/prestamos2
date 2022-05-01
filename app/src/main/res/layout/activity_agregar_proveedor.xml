@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".agregarUsuario">
+    tools:context=".agregarProveedor">
 
     <EditText
-        android:id="@+id/et_correousuario"
+        android:id="@+id/et_correoproveedor"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <EditText
-        android:id="@+id/et_nombreusuario"
+        android:id="@+id/et_nombreproveedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_direccionusuario"
+        android:id="@+id/et_direccionproveedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -53,7 +53,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_nombreusuario" />
+        app:layout_constraintTop_toBottomOf="@+id/et_nombreproveedor" />
 
     <EditText
         android:id="@+id/et_Phone"
@@ -65,7 +65,7 @@
         android:inputType="phone"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_direccionusuario" />
+        app:layout_constraintTop_toBottomOf="@+id/et_direccionproveedor" />
 
     <TextView
         android:id="@+id/textView9"
@@ -78,38 +78,38 @@
         app:layout_constraintEnd_toStartOf="@+id/et_Phone"
         app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_direccionusuario" />
+        app:layout_constraintTop_toBottomOf="@+id/et_direccionproveedor" />
 
     <EditText
-        android:id="@+id/et_departamento"
+        android:id="@+id/et_contacto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Departamento"
-        app:layout_constraintTop_toBottomOf="@+id/et_correousuario"
+        android:hint="Persona de contacto"
+        app:layout_constraintTop_toBottomOf="@+id/et_correoproveedor"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="84dp" />
 
     <Button
-        android:id="@+id/buttonSALIR"
+        android:id="@+id/btSALIR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="SALIR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonINSERTAR" />
+        app:layout_constraintTop_toBottomOf="@+id/btINSERTAR" />
 
     <Button
-        android:id="@+id/buttonINSERTAR"
+        android:id="@+id/btINSERTAR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:text="INSERTAR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_departamento" />
+        app:layout_constraintTop_toBottomOf="@+id/et_contacto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
