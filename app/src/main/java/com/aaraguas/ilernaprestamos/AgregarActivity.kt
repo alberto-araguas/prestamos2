@@ -125,12 +125,19 @@ class AgregarActivity : AppCompatActivity() {
                 fechaEscogida.set(Calendar.YEAR, anyo)
                 fechaEscogida.set(Calendar.MONTH, mes)
                 fechaEscogida.set(Calendar.DAY_OF_MONTH, dia)
+                binding.tvAgregarFechaCompra.text = formatter.format(fechaEscogida.time)
+            }
+            val listenerFechap = DatePickerDialog.OnDateSetListener { datePicker, anyo, mes, dia ->
+                fechaEscogida.clear()
+                fechaEscogida.set(Calendar.YEAR, anyo)
+                fechaEscogida.set(Calendar.MONTH, mes)
+                fechaEscogida.set(Calendar.DAY_OF_MONTH, dia)
                 binding.tvFechaPrestamo.text = formatter.format(fechaEscogida.time)
             }
             binding.tvFechaPrestamo.setOnClickListener {
                 DatePickerDialog(
                     this,
-                    listenerFecha,
+                    listenerFechap,
                     fechaEscogida.get(Calendar.YEAR),
                     fechaEscogida.get(Calendar.MONTH),
                     fechaEscogida.get(Calendar.DAY_OF_MONTH)

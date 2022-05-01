@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
             val intentAgregar = Intent(this, AgregarActivity::class.java)
             startActivity(intentAgregar)
         }
+
+
     }
 
     override fun onResume() {

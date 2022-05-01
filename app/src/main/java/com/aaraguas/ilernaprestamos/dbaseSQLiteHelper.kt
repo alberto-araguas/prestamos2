@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
-    context, "prestamos.db", null, 2) {
+    context, "prestamos.db", null, 5) {
 
     private lateinit var db : SQLiteDatabase
 
@@ -85,6 +85,8 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
                 "$CAMPO_FKLUGARPRESTAMO INTEGER, $CAMPO_FKUSUARIOPRESTAMO INTEGER )"
         db?.execSQL(ordenCreacionequipos)
 
+
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -103,6 +105,7 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         val ordenBorradoEquipo2 = "DROP TABLE IF EXISTS equipo"
         db?.execSQL(ordenBorradoEquipo2)
         onCreate(db)
+
     }
 
     fun obtenerTodosPrestamos(tabla: String, campoOrden: String): Cursor {
