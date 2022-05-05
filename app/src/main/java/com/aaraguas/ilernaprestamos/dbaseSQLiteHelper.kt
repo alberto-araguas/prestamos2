@@ -62,22 +62,18 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
                 "($CAMPO_IDF INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_FNOMBRE TEXT )"
 
         db?.execSQL(ordenCreacionFamilia)
-
         val ordenCreacionlugares = "CREATE TABLE $TABLA_LUGARES " +
                 "($CAMPO_IDL INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_LNOMBRE TEXT, " +
                 "$CAMPO_LDIRECCION TEXT, $CAMPO_LTELEFONO LONG , $CAMPO_LCORREO TEXT)"
         db?.execSQL(ordenCreacionlugares)
-
         val ordenCreacionproveedores = "CREATE TABLE $TABLA_PROVEEDORES " +
                 "($CAMPO_IDP INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_PNOMBRE TEXT, " +
                 "$CAMPO_PDIRECCION TEXT, $CAMPO_PTELEFONO LONG , $CAMPO_PCORREO TEXT, $CAMPO_PCONTACTO TEXT)"
         db?.execSQL(ordenCreacionproveedores)
-
         val ordenCreacionusuarios = "CREATE TABLE $TABLA_USUARIOS " +
                 "($CAMPO_IDUS INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_USNOMBRE TEXT, " +
                 "$CAMPO_USDIRECCION TEXT, $CAMPO_USTELEFONO LONG , $CAMPO_USCORREO TEXT, $CAMPO_USDEPARTAMENTO TEXT)"
         db?.execSQL(ordenCreacionusuarios)
-
         val ordenCreacionequipos = "CREATE TABLE $TABLA_PRESTAMOS " +
                 "($CAMPO_ID INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOMBREEQUIPO TEXT, " +
                 "$CAMPO_CARACTERISTICAS TEXT, $CAMPO_FECHACOMPRA TEXT , $CAMPO_FKPROVEEDOREQUIPO INTEGER, " +
@@ -85,13 +81,9 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
                 "$CAMPO_FKLUGARPRESTAMO INTEGER, $CAMPO_FKUSUARIOPRESTAMO INTEGER )"
         db?.execSQL(ordenCreacionequipos)
 
-
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        val ordenBorrado = "DROP TABLE IF EXISTS discos"
-        db?.execSQL(ordenBorrado)
         val ordenBorradoFamilia = "DROP TABLE IF EXISTS familia"
         db?.execSQL(ordenBorradoFamilia)
         val ordenBorradoLugares = "DROP TABLE IF EXISTS lugares"
@@ -177,7 +169,7 @@ class dbaseSQLiteHelper (context: Context) : SQLiteOpenHelper(
         db.close()
     }
 
-    fun borrarDisco(id: Int) : Int {
+    fun borrar(id: Int) : Int {
         val args = arrayOf(id.toString())
         val db = this.writableDatabase
         val borrados = db.delete(TABLA_PRESTAMOS, "$CAMPO_ID = ?", args)

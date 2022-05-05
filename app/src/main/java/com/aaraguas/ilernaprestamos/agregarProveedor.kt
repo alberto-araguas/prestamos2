@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_agregar_lugar.*
 import kotlinx.android.synthetic.main.activity_agregar_proveedor.*
 import kotlinx.android.synthetic.main.activity_agregar_usuario.*
 import kotlinx.android.synthetic.main.activity_agregar_usuario.et_Phone
@@ -32,15 +33,22 @@ class agregarProveedor : AppCompatActivity() {
     }
 
     private fun insertarProveedor() {
-        try {
-            val telefono: String = et_Phone.text.toString()
+        if (et_nombreproveedor.text.toString()==""){
+            Toast.makeText(this,"FALTAN DATOS RELLENADOS", Toast.LENGTH_SHORT).show()
+        }else {
+            try {
+                val telefono: String = et_Phone.text.toString()
 
-            dbaseHelper.agregarProveedor(
-                et_nombreproveedor.text.toString(), et_direccionproveedor.text.toString(),
-                telefono.toInt(), et_correoproveedor.text.toString(), et_contacto.text.toString()
-            )
-        }catch (e:Exception){
-            Toast.makeText(this, "RELLENAR ANTES TODOS LOS DATOS", Toast.LENGTH_LONG).show()
+                dbaseHelper.agregarProveedor(
+                    et_nombreproveedor.text.toString(),
+                    et_direccionproveedor.text.toString(),
+                    telefono.toInt(),
+                    et_correoproveedor.text.toString(),
+                    et_contacto.text.toString()
+                )
+            } catch (e: Exception) {
+                Toast.makeText(this, "RELLENAR ANTES TODOS LOS DATOS", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

@@ -20,11 +20,11 @@ class AgregarActivity : AppCompatActivity() {
     private lateinit var dbaseHelper: dbaseSQLiteHelper
 
 
-    var proveedorArray = ArrayList<String>()
-    var familiaArray = ArrayList<String>()
-    var estados = arrayOf("NO PRESTADO", "PRESTADO")
-    var lugaresArray = ArrayList<String>()
-    var usuariosArray = ArrayList<String>()
+    private var proveedorArray = ArrayList<String>()
+    private var familiaArray = ArrayList<String>()
+    private var estados = arrayOf("NO PRESTADO", "PRESTADO")
+    private var lugaresArray = ArrayList<String>()
+    private var usuariosArray = ArrayList<String>()
 
 
     @SuppressLint("SetTextI18n", "SimpleDateFormat")

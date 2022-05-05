@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_agregar_familia.*
 import kotlinx.android.synthetic.main.activity_agregar_lugar.*
 import kotlinx.android.synthetic.main.activity_agregar_proveedor.*
 import kotlinx.android.synthetic.main.activity_agregar_usuario.*
@@ -33,13 +34,19 @@ class agregarLugar : AppCompatActivity() {
     }
 
     private fun insertarLugar() {
-        try{
-            val   telefono : String = et_Phonelugar.text.toString()
+        if (et_nombrelugar.text.toString()==""){
+            Toast.makeText(this,"FALTAN DATOS RELLENADOS", Toast.LENGTH_SHORT).show()
+        }else {
+            try {
+                val telefono: String = et_Phonelugar.text.toString()
 
-            dbaseHelper.agregarLugar(et_nombrelugar.text.toString(),et_direccionlugar.text.toString(),
-            telefono.toInt(), et_correolugar.text.toString() )
-        }catch (e:Exception){
-            Toast.makeText(this, "RELLENAR ANTES TODOS LOS DATOS", Toast.LENGTH_LONG).show()
+                dbaseHelper.agregarLugar(
+                    et_nombrelugar.text.toString(), et_direccionlugar.text.toString(),
+                    telefono.toInt(), et_correolugar.text.toString()
+                )
+            } catch (e: Exception) {
+                Toast.makeText(this, "RELLENAR ANTES TODOS LOS DATOS", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

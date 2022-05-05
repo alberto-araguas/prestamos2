@@ -5,9 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
-import android.net.Uri
 import android.view.*
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
@@ -114,7 +112,7 @@ class RecyclerViewAdapterPrestamos : RecyclerView.Adapter<RecyclerViewAdapterPre
                     builder.setPositiveButton(android.R.string.ok) {
                         dialogo, which ->
                             val dbHelper = dbaseSQLiteHelper(context)
-                            dbHelper.borrarDisco(id)
+                            dbHelper.borrar(id)
                             (context as MainActivity).cargaPrestamos()
                     }
                     builder.setNegativeButton(android.R.string.cancel, null)

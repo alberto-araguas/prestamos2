@@ -32,13 +32,16 @@ class agregarFamilia : AppCompatActivity() {
 
     }
     private fun insertarFamilia() {
-    try{
-        dbaseHelper.agregarFamilia(et_nombrefamilia.text.toString() )
+        if (et_nombrefamilia.text.toString()==""){
+          Toast.makeText(this,"FALTAN DATOS RELLENADOS", Toast.LENGTH_SHORT).show()
+        }else {
+            try {
+                dbaseHelper.agregarFamilia(et_nombrefamilia.text.toString())
 
-    }catch (e:Exception){
-        Toast.makeText(this, "RELLENAR ANTES TODOS LOS DATOS", Toast.LENGTH_LONG).show()
-    }
-
+            } catch (e: Exception) {
+                Toast.makeText(this, "RELLENAR ANTES TODOS LOS DATOS", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     fun cerrarActvity (){

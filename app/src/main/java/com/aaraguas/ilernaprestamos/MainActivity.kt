@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aaraguas.ilernaprestamos.Adapters.RecyclerViewAdapterPrestamos
 import com.aaraguas.ilernaprestamos.databinding.ActivityMainBinding
 
 import kotlinx.android.synthetic.main.layout_busca.*
+import java.time.Duration
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -61,8 +63,13 @@ class MainActivity : AppCompatActivity() {
     private fun cargaBusqueda(campo: String, campoValor: String) {
         val cursor = dbaseHelper.obtenerCursor(dbaseSQLiteHelper.TABLA_PRESTAMOS, campo,
             campoValor, campo)
-        adaptador.RecyclerViewAdapterPrestamos(this, cursor)
-        binding.rvPrestamos.adapter = adaptador
+        if (cursor.count ==0){
+           Toast.makeText(this,"NO SE HA ENCONTRADO COINCIDENCIAS",Toast.LENGTH_SHORT).show()
+            cargaPrestamos()
+        }else {
+            adaptador.RecyclerViewAdapterPrestamos(this, cursor)
+            binding.rvPrestamos.adapter = adaptador
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

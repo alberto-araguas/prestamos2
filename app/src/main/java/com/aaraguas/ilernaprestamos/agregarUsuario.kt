@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_agregar_proveedor.*
 import kotlinx.android.synthetic.main.activity_agregar_usuario.*
+import kotlinx.android.synthetic.main.activity_agregar_usuario.et_Phone
 import java.lang.Exception
 
 class agregarUsuario : AppCompatActivity() {
@@ -31,17 +33,25 @@ class agregarUsuario : AppCompatActivity() {
     }
 
     private fun insertarUsuario() {
-    try{
-      val   telefono : String = et_Phone.text.toString()
+        if (et_nombreusuario.text.toString()==""){
+            Toast.makeText(this,"FALTAN DATOS RELLENADOS", Toast.LENGTH_SHORT).show()
+        }else {
+            try {
+                val telefono: String = et_Phone.text.toString()
 
-      dbaseHelper.agregarUsuario(et_nombreusuario.text.toString(),et_direccionusuario.text.toString(),
-                telefono.toInt(), et_correousuario.text.toString(),et_departamento.text.toString() )
+                dbaseHelper.agregarUsuario(
+                    et_nombreusuario.text.toString(),
+                    et_direccionusuario.text.toString(),
+                    telefono.toInt(),
+                    et_correousuario.text.toString(),
+                    et_departamento.text.toString()
+                )
 
-    }catch (e : Exception){
-        Toast.makeText(this, "RELLENAR ANTES TODOS LOS DATOS", Toast.LENGTH_LONG).show()
+            } catch (e: Exception) {
+                Toast.makeText(this, "RELLENAR ANTES TODOS LOS DATOS", Toast.LENGTH_LONG).show()
 
-    }
-
+            }
+        }
     }
 
     fun cerrarActvity (){
